@@ -83,13 +83,13 @@ export const api = {
   }),
 
   // Sessions
-  createSession: (opts) => apiFetch('/sessions', { method: 'POST', body: opts }),
-  getSession: (id) => apiFetch(`/sessions/${encodeURIComponent(id)}`),
-  requestContent: (sessionId) => apiFetch(`/sessions/${encodeURIComponent(sessionId)}/content`, {
+  createSession: (opts) => apiFetch('/session', { method: 'POST', body: opts }),
+  getSession: (id) => apiFetch(`/session/${encodeURIComponent(id)}`),
+  requestContent: (sessionId) => apiFetch(`/session/${encodeURIComponent(sessionId)}/content`, {
     method: 'POST'
   }),
   reportEngagement: (sessionId, signals) => apiFetch(
-    `/sessions/${encodeURIComponent(sessionId)}/engagement`,
+    `/session/${encodeURIComponent(sessionId)}/engagement`,
     { method: 'POST', body: signals }
   ),
 

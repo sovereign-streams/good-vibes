@@ -120,29 +120,50 @@ export class YouTubeSource extends BaseSource {
    * @returns {Promise<string|null>} Transcript text or null if unavailable.
    */
   async getTranscript(videoId) {
+    // Scrape auto-generated captions from YouTube's watch page.
+    // This doesn't use the Data API (no quota cost, no OAuth needed).
     try {
-      this._trackQuota(50);
-
-      const params = new URLSearchParams({
-        part: 'snippet',
-        videoId,
-        key: this.apiKey,
+      const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+      const res = await fetch(watchUrl, {
+        headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36', 'Accept-Language': 'en-US,en;q=0.9' },
       });
+      if (!res.ok) return null;
+      const html = await res.text();
 
-      const url = `${YOUTUBE_API_BASE}/captions?${params}`;
-      const data = await this._fetchWithRetry(url);
+      // Extract timedtext URL from the page's player response
+      const match = html.match(/"captionTracks":\s*(\[.*?\])/);
+      if (!match) return null;
 
-      if (!data.items || data.items.length === 0) {
-        return null;
+      let tracks;
+      try { tracks = JSON.parse(match[1]); } catch { return null; }
+
+      // Prefer English, fall back to first auto-generated track
+      const enTrack = tracks.find(t => t.languageCode === 'en') || tracks.find(t => t.kind === 'asr') || tracks[0];
+      if (!enTrack?.baseUrl) return null;
+
+      // Fetch the XML captions
+      const capRes = await fetch(enTrack.baseUrl);
+      if (!capRes.ok) return null;
+      const xml = await capRes.text();
+
+      // Extract text from <text> elements, strip HTML entities
+      const texts = [];
+      const regex = /<text[^>]*>(.*?)<\/text>/gs;
+      let m;
+      while ((m = regex.exec(xml)) !== null) {
+        let t = m[1]
+          .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\n/g, ' ').trim();
+        if (t) texts.push(t);
       }
 
-      // The captions.list endpoint only tells us what tracks exist.
-      // Actual transcript download requires OAuth or alternative methods.
-      // Return null for now -- the TranscriptFetcher layer handles this gracefully.
-      console.log(`[youtube] Captions available for ${videoId} (${data.items.length} tracks), but download requires OAuth`);
-      return null;
+      const transcript = texts.join(' ');
+      if (!transcript) return null;
+
+      console.log(`[transcript] Scraped ${transcript.length} chars for ${videoId}`);
+      return transcript;
     } catch (err) {
-      console.warn(`[youtube] Could not fetch transcript for ${videoId}: ${err.message}`);
+      console.warn(`[transcript] Scrape failed for ${videoId}: ${err.message}`);
       return null;
     }
   }
