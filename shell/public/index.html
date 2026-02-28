@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#FF6B35">
+  <meta name="description" content="Good Vibes — Own your scroll. Own your mind.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Good Vibes">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/icon-192.svg">
+  <link rel="stylesheet" href="/css/app.css">
+  <title>Good Vibes</title>
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <a href="#/" class="logo" aria-label="Good Vibes home">
+        <svg class="logo-icon" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+          <circle cx="16" cy="22" r="9" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="28.27 28.27" transform="rotate(-180 16 22)"/>
+          <line x1="16" y1="13" x2="16" y2="5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="13" x2="10" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="13" x2="22" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text">Good Vibes</span>
+      </a>
+      <nav class="app-nav" aria-label="Main navigation">
+        <a href="#/" class="nav-link" data-route="home" aria-label="Home">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10a1 1 0 001 1h3v-6h6v6h3a1 1 0 001-1V10"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="#/profiles" class="nav-link" data-route="profiles" aria-label="Profiles">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 015 5v1a5 5 0 01-10 0V7a5 5 0 015-5z"/><path d="M21 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/></svg>
+          <span>Profiles</span>
+        </a>
+        <a href="#/stats" class="nav-link" data-route="stats" aria-label="Stats">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+          <span>Stats</span>
+        </a>
+        <a href="#/settings" class="nav-link" data-route="settings" aria-label="Settings">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1.08-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1.08 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001.08 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1.08z"/></svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="view" class="app-main" role="main">
+      <!-- Views rendered here by router -->
+    </main>
+  </div>
+
+  <script type="module" src="/js/app.mjs"></script>
+</body>
+</html>

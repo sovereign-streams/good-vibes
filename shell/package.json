@@ -1,0 +1,17 @@
+{
+  "name": "good-vibes-shell",
+  "version": "0.1.0",
+  "description": "Good Vibes — Consumer shell backend and PWA server",
+  "type": "module",
+  "main": "src/server.mjs",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "dev": "node --watch src/server.mjs",
+    "test": "node --test tests/api.test.mjs"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0"
+  },
+  "devDependencies": {},
+  "private": true
+}
