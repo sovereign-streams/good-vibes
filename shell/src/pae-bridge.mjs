@@ -51,6 +51,16 @@ export class PAEBridge {
       }
     }
 
+    // Ensure an active profile is set
+    const active = this.pae.storage.getActiveProfile();
+    if (!active) {
+      const profiles = this.pae.storage.listProfiles();
+      const defaultProfile = profiles.find(p => p.id === 'good-vibes-default') || profiles[0];
+      if (defaultProfile) {
+        this.pae.storage.setActiveProfile(defaultProfile.id);
+      }
+    }
+
     this._ready = true;
   }
 
@@ -92,6 +102,10 @@ export class PAEBridge {
   // ── Sessions ──────────────────────────────────────────────
 
   createSession(options = {}) {
+    // Accept 'profile' as alias for 'profileId'
+    if (options.profile && !options.profileId) {
+      options.profileId = options.profile;
+    }
     const session = this.pae.createSession(options);
     this._sessions.set(session.session_id, session);
     return {
