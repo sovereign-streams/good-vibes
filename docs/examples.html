@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examples — Good Vibes</title>
+  <meta name="description" content="Real-world examples of SEP protocol exchanges: enrichment envelopes, consumer intent, provider responses, and telemetry. Walk through every field.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/img/good-vibes-logo.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/img/good-vibes-logo.svg" alt="Good Vibes logo" width="32" height="32">
+        Good Vibes
+      </a>
+      <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="whitepaper.html">White Paper</a></li>
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="taxonomy.html">Taxonomy</a></li>
+        <li><a href="examples.html" class="active">Examples</a></li>
+        <li><a href="https://github.com" class="nav__github" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <div class="container">
+      <span class="hero__badge">Learn by Example</span>
+      <h1>Protocol Examples</h1>
+      <p>Walk through real-world SEP exchanges &mdash; from enriching a surfboard video to composing a morning warrior session.</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <section>
+    <div class="container">
+      <div class="content-with-toc">
+        <aside class="toc">
+          <div class="toc__title">Examples</div>
+          <ul>
+            <li><a href="#enrichment">Enrichment Envelope</a></li>
+            <li><a href="#consumer-intent">Consumer Intent</a></li>
+            <li><a href="#provider-response">Provider Response</a></li>
+            <li><a href="#telemetry">Telemetry Exchange</a></li>
+            <li><a href="#full-flow">Full Exchange Flow</a></li>
+          </ul>
+        </aside>
+
+        <div class="content">
+
+          <!-- Example 1: Enrichment Envelope -->
+          <div class="spec-section" id="enrichment">
+            <h2><span class="section-num">1</span> Enrichment Envelope</h2>
+            <p>This example shows a fully enriched record for a YouTube video about building a surfboard from scratch. This is what the enrichment pipeline produces after processing raw YouTube metadata through the LLM tagging pass.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Enrichment Envelope &mdash; Surfboard Video</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "item_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "source": {
+    "platform": "youtube",
+    "origin_url": "https://youtube.com/watch?v=xK3fRmPzQuo",
+    "origin_id": "xK3fRmPzQuo",
+    "content_type": "video",
+    "duration_seconds": 342
+  },
+  "meta": {
+    "title": "How to Build a Surfboard from Scratch",
+    "creator": "Shaping Bay",
+    "published": "2026-01-15T00:00:00Z",
+    "original_tags": ["surfboard", "woodworking", "craft"],
+    "language": "en",
+    "thumbnail_url": "https://i.ytimg.com/vi/xK3fRmPzQuo/maxresdefault.jpg"
+  },
+  "enrichment": {
+    "schema_version": "0.1.0",
+    "enriched_at": "2026-02-28T12:00:00Z",
+    "categories": [
+      { "id": "craft", "confidence": 0.92 },
+      { "id": "skill_building", "confidence": 0.85 },
+      { "id": "relaxation", "confidence": 0.71 }
+    ],
+    "emotional_tone": {
+      "primary": "calm",
+      "secondary": "focused",
+      "rage_bait": false,
+      "humiliation": false,
+      "shock_content": false,
+      "inflammatory": false
+    },
+    "energy_level": 0.35,
+    "cognitive_load": 0.45,
+    "motivation_score": 0.40,
+    "humor_score": 0.10,
+    "skill_transfer_score": 0.80,
+    "session_fit": {
+      "good_opener": false,
+      "good_builder": true,
+      "good_peak": false,
+      "good_closer": true
+    }
+  },
+  "provider": {
+    "id": "good-vibes-main",
+    "guardrail_pass": true,
+    "guardrail_version": "0.1.0"
+  }
+}</code></pre>
+            </div>
+
+            <h3>Walkthrough</h3>
+
+            <div class="example-walkthrough">
+              <div class="example-walkthrough__annotation">
+                <strong>source</strong> &mdash; Points to the original YouTube video. The SEP envelope never hosts the content &mdash; it references the origin. The consumer's shell lazy-loads the actual video only when the user is ready to watch it. This keeps the protocol lightweight: you're exchanging metadata, not video blobs.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>meta</strong> &mdash; The raw metadata from YouTube: title, creator, publish date, original tags, language. This is preserved exactly as it came from the source API. The enrichment layer builds on top of this &mdash; it doesn't replace it.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>enrichment.categories</strong> &mdash; The LLM tagger identified this as primarily a <code>craft</code> video (0.92 confidence), with strong <code>skill_building</code> (0.85) and moderate <code>relaxation</code> (0.71) signals. A content item can match multiple categories. The PAE uses these confidence scores to weight the item against the user's category preferences.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>enrichment.emotional_tone</strong> &mdash; The primary tone is <code>calm</code> with a secondary of <code>focused</code>. All safety flags are false &mdash; no rage-bait, humiliation, shock, or inflammatory content detected. This is a clean, educational video with a meditative quality.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>Scores</strong> &mdash; Low energy (0.35) and moderate cognitive load (0.45) &mdash; this is a watch-and-absorb video, not a jump-up-and-act one. High skill transfer (0.80) means you'll actually learn something. Low humor (0.10) &mdash; it's instructional, not comedy.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>session_fit</strong> &mdash; Good as a builder (mid-session, focused learning) and good as a closer (calming, grounding). Not a good opener (too focused to start cold) or peak (not enough energy). The PAE will slot this into the appropriate position in a session arc.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>provider</strong> &mdash; This item passed Good Vibes guardrails (version 0.1.0). It's safe to include in Good Vibes curated streams. The guardrail check is a binary pass/fail &mdash; items that fail are still stored but excluded from Good Vibes responses.
+              </div>
+            </div>
+          </div>
+
+          <!-- Example 2: Consumer Intent -->
+          <div class="spec-section" id="consumer-intent">
+            <h2><span class="section-num">2</span> Consumer Intent &mdash; Morning Warrior Session</h2>
+            <p>This is what a consumer's PAE sends to a provider when requesting a "Morning Warrior" session &mdash; a high-energy morning routine focused on fitness and motivation, with humor to warm up and music to close.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Consumer Intent &mdash; Morning Warrior</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "consumer_id": "anonymous-pae-7f3a",
+  "intent": {
+    "session_type": "composed",
+    "target_duration_minutes": 15,
+    "weights": {
+      "fitness": 0.30,
+      "motivation": 0.25,
+      "humor": 0.15,
+      "skill_building": 0.10,
+      "music": 0.10,
+      "stoicism": 0.10
+    },
+    "filters": {
+      "exclude_rage_bait": true,
+      "exclude_humiliation": true,
+      "exclude_shock_content": true,
+      "min_energy_level": 0.3,
+      "max_cognitive_load": 0.6,
+      "language": ["en"]
+    },
+    "context": {
+      "time_of_day": "morning",
+      "session_number_today": 1,
+      "state_token": null
+    }
+  },
+  "disclosure_level": "minimal",
+  "telemetry_opt_in": false
+}</code></pre>
+            </div>
+
+            <h3>Walkthrough</h3>
+
+            <div class="example-walkthrough">
+              <div class="example-walkthrough__annotation">
+                <strong>consumer_id</strong> &mdash; The consumer identifies as <code>anonymous-pae-7f3a</code>. Combined with <code>disclosure_level: "minimal"</code>, the provider gets no behavioral history, no session history, nothing beyond this intent payload. Maximum privacy.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>session_type: "composed"</strong> &mdash; The consumer is requesting a composed session &mdash; not a raw list of items, but a payload that can be assembled into a session arc with emotional pacing. The provider will include a <code>suggested_arc</code> in its response.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>weights</strong> &mdash; This is the core of algorithmic sovereignty. The user wants 30% fitness, 25% motivation, 15% humor. These aren't rigid quotas &mdash; the provider uses them as preference signals. In a 15-minute session (roughly 8 short-form items), the distribution might be: 2-3 fitness, 2 motivation, 1 humor, 1 skill/stoicism, 1 music.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>filters</strong> &mdash; Hard exclusions: no rage-bait, no humiliation, no shock content. Plus: minimum energy level of 0.3 (it's a morning warrior session &mdash; nothing too sleepy) and max cognitive load of 0.6 (morning means moderate focus, not heavy study material). English only.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>context</strong> &mdash; Morning, first session of the day, no prior state token. This tells the provider it's a fresh session &mdash; no continuity from a previous exchange. If the user had a state token from a prior interaction, the provider could use it for smarter follow-up without building a persistent profile.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>telemetry_opt_in: false</strong> &mdash; The consumer isn't sharing engagement data after this session. The provider gets the intent, sends the payload, and the exchange ends. No feedback loop. The consumer retains full privacy over their viewing behavior.
+              </div>
+            </div>
+          </div>
+
+          <!-- Example 3: Provider Response -->
+          <div class="spec-section" id="provider-response">
+            <h2><span class="section-num">3</span> Provider Response with Session Arc</h2>
+            <p>This is Good Vibes responding to the Morning Warrior intent above. The response includes a curated payload of enriched items and a suggested session arc.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Provider Response &mdash; Good Vibes</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "provider_id": "good-vibes-main",
+  "response_type": "payload",
+  "payload": {
+    "items": [
+      {
+        "item_id": "f1a2b3c4-0001",
+        "source": { "platform": "youtube", "origin_id": "hm1_Funny01" },
+        "meta": { "title": "When Your Alarm Goes Off at 5 AM (Comedy)" },
+        "enrichment": {
+          "categories": [{ "id": "humor", "confidence": 0.95 }],
+          "emotional_tone": { "primary": "amused" },
+          "energy_level": 0.50,
+          "humor_score": 0.90,
+          "session_fit": { "good_opener": true }
+        }
+      },
+      {
+        "item_id": "f1a2b3c4-0002",
+        "source": { "platform": "youtube", "origin_id": "fit_HIIT_03" },
+        "meta": { "title": "5-Minute HIIT: No Equipment, No Excuses" },
+        "enrichment": {
+          "categories": [{ "id": "fitness", "confidence": 0.97 }],
+          "emotional_tone": { "primary": "energized" },
+          "energy_level": 0.90,
+          "motivation_score": 0.75,
+          "session_fit": { "good_builder": true }
+        }
+      },
+      {
+        "item_id": "f1a2b3c4-0003",
+        "source": { "platform": "youtube", "origin_id": "fit_Form_07" },
+        "meta": { "title": "Perfect Pushup Form in 60 Seconds" },
+        "enrichment": {
+          "categories": [
+            { "id": "fitness", "confidence": 0.93 },
+            { "id": "skill_building", "confidence": 0.72 }
+          ],
+          "emotional_tone": { "primary": "focused" },
+          "energy_level": 0.65,
+          "skill_transfer_score": 0.85,
+          "session_fit": { "good_builder": true }
+        }
+      },
+      {
+        "item_id": "f1a2b3c4-0004",
+        "source": { "platform": "youtube", "origin_id": "stoi_Marcus02" },
+        "meta": { "title": "Marcus Aurelius: The Morning Routine of an Emperor" },
+        "enrichment": {
+          "categories": [
+            { "id": "stoicism", "confidence": 0.91 },
+            { "id": "motivation", "confidence": 0.68 }
+          ],
+          "emotional_tone": { "primary": "reflective", "secondary": "inspired" },
+          "energy_level": 0.45,
+          "cognitive_load": 0.50,
+          "session_fit": { "good_builder": true }
+        }
+      },
+      {
+        "item_id": "f1a2b3c4-0005",
+        "source": { "platform": "youtube", "origin_id": "motiv_Goggins" },
+        "meta": { "title": "David Goggins: Stay Hard (2-Min Motivation)" },
+        "enrichment": {
+          "categories": [{ "id": "motivation", "confidence": 0.98 }],
+          "emotional_tone": { "primary": "energized", "secondary": "inspired" },
+          "energy_level": 0.95,
+          "motivation_score": 0.97,
+          "session_fit": { "good_peak": true }
+        }
+      },
+      {
+        "item_id": "f1a2b3c4-0006",
+        "source": { "platform": "youtube", "origin_id": "fit_Stretch09" },
+        "meta": { "title": "3-Minute Post-Workout Cool Down Stretch" },
+        "enrichment": {
+          "categories": [
+            { "id": "fitness", "confidence": 0.88 },
+            { "id": "relaxation", "confidence": 0.65 }
+          ],
+          "emotional_tone": { "primary": "calm" },
+          "energy_level": 0.30,
+          "session_fit": { "good_closer": true }
+        }
+      },
+      {
+        "item_id": "f1a2b3c4-0007",
+        "source": { "platform": "youtube", "origin_id": "music_Pump01" },
+        "meta": { "title": "Morning Energy: 2-Min Pump-Up Mix" },
+        "enrichment": {
+          "categories": [{ "id": "music", "confidence": 0.96 }],
+          "emotional_tone": { "primary": "energized" },
+          "energy_level": 0.80,
+          "motivation_score": 0.70,
+          "session_fit": { "good_closer": true }
+        }
+      }
+    ],
+    "total_available": 1247,
+    "returned": 7,
+    "confidence": 0.82,
+    "suggested_arc": [
+      "humor",
+      "fitness",
+      "fitness",
+      "stoicism",
+      "motivation",
+      "fitness",
+      "music"
+    ],
+    "state_token": "gv-sess-2026022801-a7f3b2"
+  },
+  "capabilities": {
+    "supports_stateful": true,
+    "supports_full_index_browse": false,
+    "supports_telemetry_exchange": true,
+    "max_payload_size": 100
+  }
+}</code></pre>
+            </div>
+
+            <h3>Walkthrough</h3>
+
+            <div class="example-walkthrough">
+              <div class="example-walkthrough__annotation">
+                <strong>suggested_arc</strong> &mdash; Good Vibes suggests a session arc: open with humor (warm up), build through fitness and stoicism (engaged focus), peak with motivation (energy spike), then close with a cool-down stretch and pump-up music (grounded exit). This follows the session arc pattern: Open &rarr; Build &rarr; Peak &rarr; Close.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>Items follow the arc</strong> &mdash; Item 1 (comedy, good_opener) warms the user up. Items 2-4 (fitness, skill, stoicism) build engagement. Item 5 (Goggins motivation, energy 0.95) is the peak. Items 6-7 (stretch + music) bring the user down to a grounded exit state. The whole session is roughly 15 minutes of designed emotional pacing.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>confidence: 0.82</strong> &mdash; The provider is 82% confident this payload matches the consumer's intent. Not perfect &mdash; the stoicism item might not be the best fit for a morning warrior, but it matches the 10% stoicism weight. The consumer's PAE can re-rank locally if its local preferences disagree.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>state_token</strong> &mdash; The provider includes a state token for follow-up. If the consumer sends this token in a subsequent query, the provider can avoid repeating content and build on the previous exchange. The token is opaque &mdash; the provider stores session continuity, not a user profile.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>capabilities</strong> &mdash; Good Vibes supports stateful sessions and telemetry exchange but not full index browsing. If the consumer's PAE wanted Model B (full index browse), it would need a different provider. These capabilities are declared upfront in the provider manifest.
+              </div>
+            </div>
+          </div>
+
+          <!-- Example 4: Telemetry -->
+          <div class="spec-section" id="telemetry">
+            <h2><span class="section-num">4</span> Telemetry Exchange</h2>
+            <p>After a session, a consumer can optionally share engagement telemetry back to the provider. This creates a value exchange &mdash; the provider gets signal quality data to improve future payloads. Here's what telemetry looks like for the Morning Warrior session above.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Telemetry Exchange</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "telemetry": {
+    "session_id": "local-sess-2026022801-morning",
+    "items": [
+      {
+        "item_id": "f1a2b3c4-0001",
+        "viewed": true,
+        "view_duration_seconds": 62,
+        "completed": true,
+        "liked": true,
+        "skipped_at_seconds": null,
+        "rewatched": false,
+        "paused": false,
+        "paused_at_seconds": null
+      },
+      {
+        "item_id": "f1a2b3c4-0002",
+        "viewed": true,
+        "view_duration_seconds": 295,
+        "completed": true,
+        "liked": true,
+        "skipped_at_seconds": null,
+        "rewatched": false,
+        "paused": true,
+        "paused_at_seconds": 180
+      },
+      {
+        "item_id": "f1a2b3c4-0003",
+        "viewed": true,
+        "view_duration_seconds": 58,
+        "completed": true,
+        "liked": false,
+        "skipped_at_seconds": null,
+        "rewatched": true,
+        "paused": false,
+        "paused_at_seconds": null
+      },
+      {
+        "item_id": "f1a2b3c4-0004",
+        "viewed": true,
+        "view_duration_seconds": 45,
+        "completed": false,
+        "liked": false,
+        "skipped_at_seconds": 45,
+        "rewatched": false,
+        "paused": false,
+        "paused_at_seconds": null
+      },
+      {
+        "item_id": "f1a2b3c4-0005",
+        "viewed": true,
+        "view_duration_seconds": 120,
+        "completed": true,
+        "liked": true,
+        "skipped_at_seconds": null,
+        "rewatched": true,
+        "paused": false,
+        "paused_at_seconds": null
+      },
+      {
+        "item_id": "f1a2b3c4-0006",
+        "viewed": true,
+        "view_duration_seconds": 185,
+        "completed": true,
+        "liked": false,
+        "skipped_at_seconds": null,
+        "rewatched": false,
+        "paused": false,
+        "paused_at_seconds": null
+      },
+      {
+        "item_id": "f1a2b3c4-0007",
+        "viewed": true,
+        "view_duration_seconds": 120,
+        "completed": true,
+        "liked": true,
+        "skipped_at_seconds": null,
+        "rewatched": false,
+        "paused": false,
+        "paused_at_seconds": null
+      }
+    ],
+    "session_completed": true,
+    "session_satisfaction": 0.85
+  }
+}</code></pre>
+            </div>
+
+            <h3>Walkthrough</h3>
+
+            <div class="example-walkthrough">
+              <div class="example-walkthrough__annotation">
+                <strong>Item 1 (Comedy opener)</strong> &mdash; Watched in full, liked. The humor opener worked &mdash; it warmed the user up. The provider can learn that humor openers are effective for this type of session.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>Item 2 (HIIT workout)</strong> &mdash; Watched in full, liked, but paused at 180 seconds. The pause might mean the user actually did the workout along with the video. High engagement signal.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>Item 3 (Pushup form)</strong> &mdash; Completed and rewatched. The rewatch is a strong signal &mdash; the user found this valuable enough to replay. But no like &mdash; maybe good content but not "favorite" material. The skill_transfer_score of 0.85 was accurate.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>Item 4 (Stoicism)</strong> &mdash; Skipped at 45 seconds. This is the key signal: the Marcus Aurelius content didn't land in a morning warrior session. The user wanted energy, not reflection. The provider's confidence of 0.82 was slightly optimistic. Future payloads for morning sessions might reduce stoicism weight or use a more energized philosophical video.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>Item 5 (Goggins motivation)</strong> &mdash; Completed, liked, and rewatched. The peak item was perfect. Highest engagement in the session. Motivation at 0.97 was spot-on.
+              </div>
+
+              <div class="example-walkthrough__annotation">
+                <strong>session_satisfaction: 0.85</strong> &mdash; The user rated the overall session at 85% satisfaction. One skip (the stoicism item) brought it down slightly, but the strong peak and opener carried it. This is valuable feedback: the arc structure works, but the builder selection could be tighter.
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Flow -->
+          <div class="spec-section" id="full-flow">
+            <h2><span class="section-num">5</span> Full Exchange Flow</h2>
+            <p>Here's the complete end-to-end flow of a SEP exchange, from enrichment through session experience.</p>
+
+            <div class="steps" style="grid-template-columns: 1fr; gap: 1.25rem; counter-reset: step;">
+              <div class="step" style="text-align: left; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div style="flex-shrink: 0;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--gradient-warm); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">1</div>
+                </div>
+                <div>
+                  <h4 style="margin-bottom: 0.25rem;">Content Ingestion &amp; Enrichment</h4>
+                  <p>YouTube API returns raw metadata for 1,000 videos. The enrichment pipeline processes each one: fetches transcripts, runs LLM tagging, checks guardrails, validates against schema. 850 items pass guardrails and are stored as SEP-compliant enrichment envelopes in the provider index.</p>
+                </div>
+              </div>
+              <div class="step" style="text-align: left; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div style="flex-shrink: 0;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--gradient-warm); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">2</div>
+                </div>
+                <div>
+                  <h4 style="margin-bottom: 0.25rem;">Consumer Sends Intent</h4>
+                  <p>The user opens their PAE and selects "Morning Warrior" profile. The PAE constructs a consumer intent payload with fitness/motivation-heavy weights, rage-bait exclusions, and a 15-minute target. It sends this to Good Vibes via the SEP query endpoint.</p>
+                </div>
+              </div>
+              <div class="step" style="text-align: left; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div style="flex-shrink: 0;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--gradient-warm); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">3</div>
+                </div>
+                <div>
+                  <h4 style="margin-bottom: 0.25rem;">Provider Returns Payload</h4>
+                  <p>Good Vibes queries its index, matches against the intent weights and filters, ranks results by relevance, and suggests a session arc. It returns 7 items with a suggested sequence: humor opener, fitness/stoicism builders, motivation peak, stretch/music closer.</p>
+                </div>
+              </div>
+              <div class="step" style="text-align: left; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div style="flex-shrink: 0;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--gradient-warm); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">4</div>
+                </div>
+                <div>
+                  <h4 style="margin-bottom: 0.25rem;">PAE Composes Session</h4>
+                  <p>The consumer's PAE receives the payload and applies local preferences. It might reorder items, swap the stoicism piece for another builder, or adjust the arc based on the user's historical preferences. The PAE makes the final sequencing decision.</p>
+                </div>
+              </div>
+              <div class="step" style="text-align: left; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div style="flex-shrink: 0;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--gradient-warm); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">5</div>
+                </div>
+                <div>
+                  <h4 style="margin-bottom: 0.25rem;">User Experiences Session</h4>
+                  <p>The consumer shell renders the session arc. Content is lazy-loaded from YouTube when the user reaches each item. The user watches, skips, pauses, likes. The session has a defined end &mdash; when it's done, it's done. No infinite scroll.</p>
+                </div>
+              </div>
+              <div class="step" style="text-align: left; display: flex; gap: 1.25rem; align-items: flex-start;">
+                <div style="flex-shrink: 0;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--gradient-warm); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">6</div>
+                </div>
+                <div>
+                  <h4 style="margin-bottom: 0.25rem;">Feedback Loop (Optional)</h4>
+                  <p>If the user opted in, the PAE sends aggregated telemetry back to Good Vibes. The provider learns that humor openers work, stoicism didn't land in this context, and Goggins motivation was the session highlight. The PAE also updates local preferences &mdash; maybe reducing stoicism weight for morning sessions.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="tinted">
+    <div class="container text-center">
+      <div class="section-header">
+        <span class="overline">Dive Deeper</span>
+        <h2>Explore the Protocol</h2>
+        <p>Now that you've seen how SEP works in practice, explore the full specification or browse the enrichment taxonomy.</p>
+      </div>
+      <div class="hero__actions" style="margin-top: 0;">
+        <a href="specification.html" class="btn btn--primary">Full Specification</a>
+        <a href="taxonomy.html" class="btn btn--secondary">Tag Taxonomy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/good-vibes-logo.svg" alt="" width="24" height="24">
+        Good Vibes &mdash; Personal Algorithm Engine
+      </div>
+      <ul class="footer__links">
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="taxonomy.html">Taxonomy</a></li>
+        <li><a href="whitepaper.html">White Paper</a></li>
+        <li><a href="examples.html">Examples</a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
