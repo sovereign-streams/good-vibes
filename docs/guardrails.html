@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Guardrails &mdash; Good Vibes</title>
+  <meta name="description" content="Good Vibes publishes its content filter logic openly. Transparency is credibility. View the complete guardrail rules that shape the Good Vibes content index.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/img/good-vibes-logo.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/img/good-vibes-logo.svg" alt="Good Vibes logo" width="32" height="32">
+        Good Vibes
+      </a>
+      <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="whitepaper.html">White Paper</a></li>
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="taxonomy.html">Taxonomy</a></li>
+        <li><a href="examples.html">Examples</a></li>
+        <li><a href="guardrails.html" class="active">Guardrails</a></li>
+        <li><a href="https://github.com" class="nav__github" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <span class="hero__badge">Transparency is Credibility</span>
+    <h1>Content Guardrails</h1>
+    <p>Good Vibes publishes its content filter logic openly. These are the rules that shape what enters &mdash; and what is excluded from &mdash; the Good Vibes content index.</p>
+  </header>
+
+  <!-- Philosophy -->
+  <section>
+    <div class="container container--narrow">
+      <div class="section-header">
+        <span class="overline">Philosophy</span>
+        <h2>Why We Publish Our Rules</h2>
+      </div>
+      <p>Most content platforms hide their moderation rules behind vague "community guidelines." You don't know why content appears in your feed &mdash; or why it doesn't. Good Vibes takes the opposite approach.</p>
+      <p>We believe that <strong>an algorithm you can't inspect is an algorithm you can't trust.</strong> By publishing our guardrail logic in full, we give you the ability to understand exactly how content is filtered. If you disagree with a rule, you can see it, question it, and &mdash; in future versions &mdash; override it with your own preferences.</p>
+
+      <div class="spec-callout">
+        <p><strong>Important distinction:</strong> These guardrails are <em>Good Vibes provider rules</em>, not Stream Exchange Protocol (SEP) rules. The SEP protocol itself has no content opinions. Another provider could implement SEP with completely different guardrails. That's by design &mdash; algorithmic sovereignty means the rules are visible and the provider is accountable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hard Exclusions -->
+  <section class="tinted">
+    <div class="container container--narrow">
+      <div class="section-header">
+        <span class="overline">Hard Exclusions</span>
+        <h2>Content We Never Serve</h2>
+        <p>These categories are automatically excluded from the Good Vibes index. Content matching any hard exclusion fails the guardrail check and is never served to users.</p>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="card">
+          <div class="card__icon card__icon--coral">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <h3>Graphic Violence</h3>
+          <p>Content containing graphic violence or gore. Detected via the <code>violence</code> emotional tone flag during LLM enrichment.</p>
+          <span class="tag tag--red">EXCLUDED</span>
+        </div>
+
+        <div class="card">
+          <div class="card__icon card__icon--coral">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <h3>Sexually Explicit</h3>
+          <p>Pornography or sexually explicit content. Detected via the <code>sexually_explicit</code> flag.</p>
+          <span class="tag tag--red">EXCLUDED</span>
+        </div>
+
+        <div class="card">
+          <div class="card__icon card__icon--coral">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <h3>Self-Harm</h3>
+          <p>Content promoting self-harm or suicide. Detected via keyword matching: <code>self-harm</code>, <code>suicide method</code>, <code>how to hurt yourself</code>.</p>
+          <span class="tag tag--red">EXCLUDED</span>
+        </div>
+
+        <div class="card">
+          <div class="card__icon card__icon--coral">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <h3>Extreme Degradation</h3>
+          <p>Extreme degradation or humiliation content. Detected via the <code>humiliation</code> emotional tone flag.</p>
+          <span class="tag tag--red">EXCLUDED</span>
+        </div>
+
+        <div class="card">
+          <div class="card__icon card__icon--coral">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <h3>Targeted Harassment</h3>
+          <p>Content that constitutes targeted harassment of individuals. Detected via keywords: <code>doxxing</code>, <code>targeted harassment</code>, <code>cyberbullying</code>.</p>
+          <span class="tag tag--red">EXCLUDED</span>
+        </div>
+
+        <div class="card">
+          <div class="card__icon card__icon--coral">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <h3>Extremist Recruitment</h3>
+          <p>Content designed to recruit for extremist ideologies. Detected via keywords: <code>join the movement</code>, <code>race war</code>, <code>extremist recruitment</code>.</p>
+          <span class="tag tag--red">EXCLUDED</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soft Filters -->
+  <section>
+    <div class="container container--narrow">
+      <div class="section-header">
+        <span class="overline">Soft Filters</span>
+        <h2>Content We Flag, Not Block</h2>
+        <p>Soft filters don't exclude content &mdash; they modify its ranking weight or tag it for transparency. In future versions, users will be able to configure these individually.</p>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="card">
+          <div class="card__icon card__icon--amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3>Inflammatory Politics</h3>
+          <p>Inflammatory political content designed to divide. Detected via the <code>inflammatory</code> flag. Default action: <strong>reduce weight by 70%</strong>.</p>
+          <span class="tag tag--amber">REDUCED WEIGHT</span>
+        </div>
+
+        <div class="card">
+          <div class="card__icon card__icon--blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Profanity-Heavy</h3>
+          <p>Content with excessive profanity. Default action: <strong>allowed</strong>. This filter is user-configurable in future versions.</p>
+          <span class="tag tag--green">ALLOWED</span> <span class="tag tag--blue">CONFIGURABLE</span>
+        </div>
+
+        <div class="card">
+          <div class="card__icon card__icon--amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3>Gambling / Crypto Promotion</h3>
+          <p>Content primarily promoting gambling or cryptocurrency speculation. Detected via keywords: <code>crypto gains</code>, <code>betting tips</code>, <code>gambling strategy</code>. Default: <strong>reduce weight by 50%</strong>.</p>
+          <span class="tag tag--amber">REDUCED WEIGHT</span>
+        </div>
+
+        <div class="card">
+          <div class="card__icon card__icon--blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Sponsored Content</h3>
+          <p>Content that is primarily a paid advertisement or native ad. Default action: <strong>allowed</strong>, tagged as <code>sponsored</code>. User-configurable.</p>
+          <span class="tag tag--green">ALLOWED</span> <span class="tag tag--blue">CONFIGURABLE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Detection Works -->
+  <section class="tinted">
+    <div class="container container--narrow">
+      <div class="section-header">
+        <span class="overline">Detection</span>
+        <h2>How Guardrails Are Applied</h2>
+      </div>
+      <p>Every piece of content in the Good Vibes index passes through a two-layer guardrail system during enrichment:</p>
+
+      <div class="steps" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="step">
+          <h4>LLM Tagging</h4>
+          <p>An LLM analyzes the content and produces emotional tone flags (rage_bait, humiliation, shock_content, inflammatory, sexually_explicit, violence).</p>
+        </div>
+        <div class="step">
+          <h4>Keyword Matching</h4>
+          <p>Title and description are scanned against keyword lists defined in the guardrail rules for categories like self-harm, harassment, and extremism.</p>
+        </div>
+        <div class="step">
+          <h4>Guardrail Check</h4>
+          <p>The ethical filter evaluates both signals. Hard exclusion matches result in a fail. Soft filter matches add flags and weight modifiers to the enrichment record.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Version & Technical -->
+  <section>
+    <div class="container container--narrow">
+      <div class="section-header">
+        <span class="overline">Technical Details</span>
+        <h2>Version Information</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Guardrail Version</td>
+              <td><code>0.1.0</code></td>
+            </tr>
+            <tr>
+              <td>Last Updated</td>
+              <td>February 28, 2026</td>
+            </tr>
+            <tr>
+              <td>Hard Exclusions</td>
+              <td>6 rules</td>
+            </tr>
+            <tr>
+              <td>Soft Filters</td>
+              <td>4 rules</td>
+            </tr>
+            <tr>
+              <td>Rules Source</td>
+              <td><code>enrichment/src/guardrails/rules.json</code></td>
+            </tr>
+            <tr>
+              <td>Filter Implementation</td>
+              <td><code>enrichment/src/guardrails/ethical-filter.mjs</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="spec-callout mt-3">
+        <p><strong>Open source:</strong> The guardrail rules are defined in a machine-readable JSON file and the filter logic is fully open source. You can inspect, fork, or propose changes to the rule set.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="tinted">
+    <div class="container text-center">
+      <div class="section-header">
+        <span class="overline">Explore Further</span>
+        <h2>Understand the Full System</h2>
+        <p>Guardrails are one part of the Good Vibes enrichment pipeline. Explore the taxonomy to see how content is categorized, or read the specification to understand the protocol.</p>
+      </div>
+      <div class="hero__actions" style="margin-top: 0;">
+        <a href="taxonomy.html" class="btn btn--primary">Browse Taxonomy</a>
+        <a href="specification.html" class="btn btn--secondary">Read the Spec</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/good-vibes-logo.svg" alt="" width="24" height="24">
+        Good Vibes &mdash; Personal Algorithm Engine
+      </div>
+      <ul class="footer__links">
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="taxonomy.html">Taxonomy</a></li>
+        <li><a href="whitepaper.html">White Paper</a></li>
+        <li><a href="examples.html">Examples</a></li>
+        <li><a href="guardrails.html">Guardrails</a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
