@@ -3,8 +3,9 @@ import { handleManifest } from './handlers/manifest.mjs';
 import { handleQuery } from './handlers/query.mjs';
 import { handleBrowse } from './handlers/browse.mjs';
 import { handleTelemetry } from './handlers/telemetry.mjs';
+import { ProviderConfig } from './lib/config.mjs';
 
-const PORT = parseInt(process.env.PORT || '3700', 10);
+const PORT = ProviderConfig.port;
 
 function parseBody(req) {
   return new Promise((resolve, reject) => {
@@ -25,7 +26,7 @@ function parseBody(req) {
 function sendJson(res, statusCode, data) {
   res.writeHead(statusCode, {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': ProviderConfig.corsOrigin,
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type'
   });
@@ -76,6 +77,7 @@ server.listen(PORT, () => {
   console.log(`  Manifest: http://localhost:${PORT}/sep/manifest`);
   console.log(`  Query:    POST http://localhost:${PORT}/sep/query`);
   console.log(`  Browse:   http://localhost:${PORT}/sep/browse`);
+  console.log(`  Telemetry: POST http://localhost:${PORT}/sep/telemetry`);
 });
 
 export { server };

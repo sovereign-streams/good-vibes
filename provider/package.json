@@ -5,6 +5,7 @@
   "description": "Good Vibes Stream Provider — SEP-compliant content metadata service",
   "scripts": {
     "start": "node src/server.mjs",
+    "dev": "node --watch src/server.mjs",
     "test": "node --test tests/*.test.mjs"
   },
   "engines": {
