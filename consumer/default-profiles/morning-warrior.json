@@ -1,0 +1,38 @@
+{
+  "id": "morning-warrior",
+  "name": "Morning Warrior",
+  "description": "High energy, fitness + motivation heavy, pump-up music closers. Start your day like you mean it.",
+  "weights": {
+    "fitness": 0.30,
+    "motivation": 0.25,
+    "nutrition": 0.10,
+    "humor": 0.10,
+    "music": 0.10,
+    "stoicism": 0.05,
+    "entrepreneurship": 0.05,
+    "skill_building": 0.03,
+    "craft": 0.01,
+    "nature": 0.01,
+    "fatherhood": 0.00,
+    "relaxation": 0.00
+  },
+  "filters": {
+    "exclude_rage_bait": true,
+    "exclude_humiliation": true,
+    "exclude_shock_content": true,
+    "min_energy_level": 0.5,
+    "max_cognitive_load": 0.6,
+    "language": ["en"]
+  },
+  "preferred_arc_template": "standard",
+  "target_duration_minutes": 15,
+  "energy_preferences": {
+    "min": 0.5,
+    "ideal": 0.8,
+    "max": 1.0
+  },
+  "tone_preferences": {
+    "preferred": ["energized", "inspired", "focused"],
+    "avoid": ["calm"]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "good-vibes-default",
+  "name": "Good Vibes Default",
+  "description": "The recommended starting point. Balanced across categories, designed to introduce you to your Personal Algorithm Engine. Your sessions will adapt as you use them.",
+  "weights": {
+    "fitness": 0.15,
+    "humor": 0.15,
+    "skill_building": 0.15,
+    "motivation": 0.12,
+    "craft": 0.10,
+    "music": 0.08,
+    "nature": 0.06,
+    "nutrition": 0.05,
+    "stoicism": 0.05,
+    "fatherhood": 0.04,
+    "entrepreneurship": 0.03,
+    "relaxation": 0.02
+  },
+  "filters": {
+    "exclude_rage_bait": true,
+    "exclude_humiliation": true,
+    "exclude_shock_content": true,
+    "max_cognitive_load": 0.7,
+    "language": ["en"]
+  },
+  "preferred_arc_template": "standard",
+  "target_duration_minutes": 15,
+  "energy_preferences": {
+    "min": 0.2,
+    "ideal": 0.6,
+    "max": 0.9
+  },
+  "tone_preferences": {
+    "preferred": ["energized", "amused", "inspired"],
+    "avoid": []
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "skill-sprint",
+  "name": "Skill Sprint",
+  "description": "80% skill-building, focused, minimal entertainment. Learn something real in a short burst.",
+  "weights": {
+    "skill_building": 0.80,
+    "entrepreneurship": 0.08,
+    "nutrition": 0.05,
+    "stoicism": 0.04,
+    "craft": 0.03,
+    "fitness": 0.00,
+    "humor": 0.00,
+    "motivation": 0.00,
+    "music": 0.00,
+    "nature": 0.00,
+    "fatherhood": 0.00,
+    "relaxation": 0.00
+  },
+  "filters": {
+    "exclude_rage_bait": true,
+    "exclude_humiliation": true,
+    "exclude_shock_content": true,
+    "min_energy_level": 0.3,
+    "max_cognitive_load": 0.9,
+    "language": ["en"]
+  },
+  "preferred_arc_template": "deep-dive",
+  "target_duration_minutes": 20,
+  "energy_preferences": {
+    "min": 0.3,
+    "ideal": 0.6,
+    "max": 0.8
+  },
+  "tone_preferences": {
+    "preferred": ["focused", "inspired"],
+    "avoid": ["amused"]
+  }
+}

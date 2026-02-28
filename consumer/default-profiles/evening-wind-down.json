@@ -1,0 +1,38 @@
+{
+  "id": "evening-wind-down",
+  "name": "Evening Wind-Down",
+  "description": "Calm, craft + nature + relaxation. Low cognitive load. Decompress and ground yourself before sleep.",
+  "weights": {
+    "relaxation": 0.25,
+    "craft": 0.20,
+    "nature": 0.20,
+    "music": 0.15,
+    "stoicism": 0.10,
+    "humor": 0.05,
+    "fatherhood": 0.05,
+    "fitness": 0.00,
+    "motivation": 0.00,
+    "nutrition": 0.00,
+    "skill_building": 0.00,
+    "entrepreneurship": 0.00
+  },
+  "filters": {
+    "exclude_rage_bait": true,
+    "exclude_humiliation": true,
+    "exclude_shock_content": true,
+    "min_energy_level": 0.0,
+    "max_cognitive_load": 0.3,
+    "language": ["en"]
+  },
+  "preferred_arc_template": "wind-down",
+  "target_duration_minutes": 20,
+  "energy_preferences": {
+    "min": 0.0,
+    "ideal": 0.25,
+    "max": 0.5
+  },
+  "tone_preferences": {
+    "preferred": ["calm", "reflective"],
+    "avoid": ["energized"]
+  }
+}

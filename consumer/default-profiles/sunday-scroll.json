@@ -1,0 +1,36 @@
+{
+  "id": "sunday-scroll",
+  "name": "Sunday Scroll",
+  "description": "Balanced all categories, longer duration, high randomness. Lean back and let the algorithm surprise you.",
+  "weights": {
+    "humor": 0.15,
+    "craft": 0.12,
+    "nature": 0.12,
+    "fitness": 0.10,
+    "motivation": 0.10,
+    "skill_building": 0.10,
+    "music": 0.08,
+    "nutrition": 0.06,
+    "stoicism": 0.05,
+    "fatherhood": 0.05,
+    "entrepreneurship": 0.04,
+    "relaxation": 0.03
+  },
+  "filters": {
+    "exclude_rage_bait": true,
+    "exclude_humiliation": true,
+    "exclude_shock_content": true,
+    "language": ["en"]
+  },
+  "preferred_arc_template": "explorer",
+  "target_duration_minutes": 45,
+  "energy_preferences": {
+    "min": 0.2,
+    "ideal": 0.5,
+    "max": 0.9
+  },
+  "tone_preferences": {
+    "preferred": ["amused", "inspired", "calm", "energized"],
+    "avoid": []
+  }
+}

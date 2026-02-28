@@ -1,0 +1,390 @@
+[
+  {
+    "sep_version": "0.1.0",
+    "item_id": "aaaaaaaa-0001-4000-8000-000000000001",
+    "source": {
+      "platform": "youtube",
+      "origin_url": "https://www.youtube.com/watch?v=opener1",
+      "origin_id": "opener1",
+      "content_type": "video",
+      "duration_seconds": 180
+    },
+    "meta": {
+      "title": "5-Minute Morning Stretch Routine",
+      "creator": "FitLife",
+      "published": "2026-02-01T08:00:00Z",
+      "original_tags": ["fitness", "morning", "stretch"],
+      "language": "en",
+      "thumbnail_url": "https://img.youtube.com/vi/opener1/0.jpg"
+    },
+    "enrichment": {
+      "schema_version": "0.1.0",
+      "enriched_at": "2026-02-15T10:00:00Z",
+      "categories": [{ "id": "fitness", "confidence": 0.95 }],
+      "emotional_tone": {
+        "primary": "energized",
+        "secondary": "focused",
+        "rage_bait": false,
+        "humiliation": false,
+        "shock_content": false,
+        "inflammatory": false,
+        "sexually_explicit": false,
+        "violence": false
+      },
+      "energy_level": 0.6,
+      "cognitive_load": 0.2,
+      "motivation_score": 0.5,
+      "humor_score": 0.1,
+      "skill_transfer_score": 0.4,
+      "production_quality": 0.7,
+      "session_fit": {
+        "good_opener": true,
+        "good_builder": false,
+        "good_peak": false,
+        "good_closer": false
+      }
+    },
+    "provider": { "id": "good-vibes-main", "guardrail_pass": true, "guardrail_version": "0.1.0" }
+  },
+  {
+    "sep_version": "0.1.0",
+    "item_id": "aaaaaaaa-0002-4000-8000-000000000002",
+    "source": {
+      "platform": "youtube",
+      "origin_url": "https://www.youtube.com/watch?v=builder1",
+      "origin_id": "builder1",
+      "content_type": "video",
+      "duration_seconds": 600
+    },
+    "meta": {
+      "title": "Advanced JavaScript Patterns Explained",
+      "creator": "CodeMaster",
+      "published": "2026-02-05T12:00:00Z",
+      "original_tags": ["coding", "javascript", "tutorial"],
+      "language": "en",
+      "thumbnail_url": "https://img.youtube.com/vi/builder1/0.jpg"
+    },
+    "enrichment": {
+      "schema_version": "0.1.0",
+      "enriched_at": "2026-02-15T10:00:00Z",
+      "categories": [
+        { "id": "skill_building", "confidence": 0.9 },
+        { "id": "entrepreneurship", "confidence": 0.3 }
+      ],
+      "emotional_tone": {
+        "primary": "focused",
+        "secondary": null,
+        "rage_bait": false,
+        "humiliation": false,
+        "shock_content": false,
+        "inflammatory": false,
+        "sexually_explicit": false,
+        "violence": false
+      },
+      "energy_level": 0.5,
+      "cognitive_load": 0.7,
+      "motivation_score": 0.3,
+      "humor_score": 0.1,
+      "skill_transfer_score": 0.9,
+      "production_quality": 0.8,
+      "session_fit": {
+        "good_opener": false,
+        "good_builder": true,
+        "good_peak": false,
+        "good_closer": false
+      }
+    },
+    "provider": { "id": "good-vibes-main", "guardrail_pass": true, "guardrail_version": "0.1.0" }
+  },
+  {
+    "sep_version": "0.1.0",
+    "item_id": "aaaaaaaa-0003-4000-8000-000000000003",
+    "source": {
+      "platform": "youtube",
+      "origin_url": "https://www.youtube.com/watch?v=builder2",
+      "origin_id": "builder2",
+      "content_type": "video",
+      "duration_seconds": 420
+    },
+    "meta": {
+      "title": "Funny Cat Compilation 2026",
+      "creator": "LaughFactory",
+      "published": "2026-02-10T14:00:00Z",
+      "original_tags": ["funny", "cats", "comedy"],
+      "language": "en",
+      "thumbnail_url": "https://img.youtube.com/vi/builder2/0.jpg"
+    },
+    "enrichment": {
+      "schema_version": "0.1.0",
+      "enriched_at": "2026-02-15T10:00:00Z",
+      "categories": [{ "id": "humor", "confidence": 0.95 }],
+      "emotional_tone": {
+        "primary": "amused",
+        "secondary": "calm",
+        "rage_bait": false,
+        "humiliation": false,
+        "shock_content": false,
+        "inflammatory": false,
+        "sexually_explicit": false,
+        "violence": false
+      },
+      "energy_level": 0.55,
+      "cognitive_load": 0.1,
+      "motivation_score": 0.1,
+      "humor_score": 0.9,
+      "skill_transfer_score": 0.0,
+      "production_quality": 0.6,
+      "session_fit": {
+        "good_opener": true,
+        "good_builder": true,
+        "good_peak": false,
+        "good_closer": false
+      }
+    },
+    "provider": { "id": "good-vibes-main", "guardrail_pass": true, "guardrail_version": "0.1.0" }
+  },
+  {
+    "sep_version": "0.1.0",
+    "item_id": "aaaaaaaa-0004-4000-8000-000000000004",
+    "source": {
+      "platform": "youtube",
+      "origin_url": "https://www.youtube.com/watch?v=peak1",
+      "origin_id": "peak1",
+      "content_type": "video",
+      "duration_seconds": 300
+    },
+    "meta": {
+      "title": "David Goggins — Stay Hard Motivation",
+      "creator": "MotivationHub",
+      "published": "2026-01-20T09:00:00Z",
+      "original_tags": ["motivation", "goggins", "discipline"],
+      "language": "en",
+      "thumbnail_url": "https://img.youtube.com/vi/peak1/0.jpg"
+    },
+    "enrichment": {
+      "schema_version": "0.1.0",
+      "enriched_at": "2026-02-15T10:00:00Z",
+      "categories": [
+        { "id": "motivation", "confidence": 0.95 },
+        { "id": "fitness", "confidence": 0.4 }
+      ],
+      "emotional_tone": {
+        "primary": "inspired",
+        "secondary": "energized",
+        "rage_bait": false,
+        "humiliation": false,
+        "shock_content": false,
+        "inflammatory": false,
+        "sexually_explicit": false,
+        "violence": false
+      },
+      "energy_level": 0.9,
+      "cognitive_load": 0.3,
+      "motivation_score": 0.95,
+      "humor_score": 0.05,
+      "skill_transfer_score": 0.2,
+      "production_quality": 0.85,
+      "session_fit": {
+        "good_opener": false,
+        "good_builder": false,
+        "good_peak": true,
+        "good_closer": false
+      }
+    },
+    "provider": { "id": "good-vibes-main", "guardrail_pass": true, "guardrail_version": "0.1.0" }
+  },
+  {
+    "sep_version": "0.1.0",
+    "item_id": "aaaaaaaa-0005-4000-8000-000000000005",
+    "source": {
+      "platform": "youtube",
+      "origin_url": "https://www.youtube.com/watch?v=closer1",
+      "origin_id": "closer1",
+      "content_type": "video",
+      "duration_seconds": 240
+    },
+    "meta": {
+      "title": "Handmade Wooden Bowl — Full Process",
+      "creator": "CraftStudio",
+      "published": "2026-02-12T16:00:00Z",
+      "original_tags": ["woodworking", "craft", "relaxing"],
+      "language": "en",
+      "thumbnail_url": "https://img.youtube.com/vi/closer1/0.jpg"
+    },
+    "enrichment": {
+      "schema_version": "0.1.0",
+      "enriched_at": "2026-02-15T10:00:00Z",
+      "categories": [
+        { "id": "craft", "confidence": 0.9 },
+        { "id": "relaxation", "confidence": 0.5 }
+      ],
+      "emotional_tone": {
+        "primary": "calm",
+        "secondary": "reflective",
+        "rage_bait": false,
+        "humiliation": false,
+        "shock_content": false,
+        "inflammatory": false,
+        "sexually_explicit": false,
+        "violence": false
+      },
+      "energy_level": 0.2,
+      "cognitive_load": 0.15,
+      "motivation_score": 0.1,
+      "humor_score": 0.0,
+      "skill_transfer_score": 0.3,
+      "production_quality": 0.9,
+      "session_fit": {
+        "good_opener": false,
+        "good_builder": false,
+        "good_peak": false,
+        "good_closer": true
+      }
+    },
+    "provider": { "id": "good-vibes-main", "guardrail_pass": true, "guardrail_version": "0.1.0" }
+  },
+  {
+    "sep_version": "0.1.0",
+    "item_id": "aaaaaaaa-0006-4000-8000-000000000006",
+    "source": {
+      "platform": "youtube",
+      "origin_url": "https://www.youtube.com/watch?v=rage1",
+      "origin_id": "rage1",
+      "content_type": "video",
+      "duration_seconds": 300
+    },
+    "meta": {
+      "title": "You Won't BELIEVE What Happened",
+      "creator": "ClickbaitKing",
+      "published": "2026-02-14T20:00:00Z",
+      "original_tags": ["shocking", "drama", "outrage"],
+      "language": "en",
+      "thumbnail_url": "https://img.youtube.com/vi/rage1/0.jpg"
+    },
+    "enrichment": {
+      "schema_version": "0.1.0",
+      "enriched_at": "2026-02-15T10:00:00Z",
+      "categories": [{ "id": "humor", "confidence": 0.3 }],
+      "emotional_tone": {
+        "primary": "energized",
+        "secondary": null,
+        "rage_bait": true,
+        "humiliation": true,
+        "shock_content": true,
+        "inflammatory": false,
+        "sexually_explicit": false,
+        "violence": false
+      },
+      "energy_level": 0.8,
+      "cognitive_load": 0.2,
+      "motivation_score": 0.0,
+      "humor_score": 0.2,
+      "skill_transfer_score": 0.0,
+      "production_quality": 0.4,
+      "session_fit": {
+        "good_opener": false,
+        "good_builder": false,
+        "good_peak": false,
+        "good_closer": false
+      }
+    },
+    "provider": { "id": "good-vibes-main", "guardrail_pass": false, "guardrail_version": "0.1.0" }
+  },
+  {
+    "sep_version": "0.1.0",
+    "item_id": "aaaaaaaa-0007-4000-8000-000000000007",
+    "source": {
+      "platform": "youtube",
+      "origin_url": "https://www.youtube.com/watch?v=builder3",
+      "origin_id": "builder3",
+      "content_type": "video",
+      "duration_seconds": 480
+    },
+    "meta": {
+      "title": "Marcus Aurelius — Meditations Explained",
+      "creator": "PhiloChannel",
+      "published": "2026-02-08T11:00:00Z",
+      "original_tags": ["stoicism", "philosophy", "marcus aurelius"],
+      "language": "en",
+      "thumbnail_url": "https://img.youtube.com/vi/builder3/0.jpg"
+    },
+    "enrichment": {
+      "schema_version": "0.1.0",
+      "enriched_at": "2026-02-15T10:00:00Z",
+      "categories": [
+        { "id": "stoicism", "confidence": 0.95 },
+        { "id": "skill_building", "confidence": 0.3 }
+      ],
+      "emotional_tone": {
+        "primary": "reflective",
+        "secondary": "calm",
+        "rage_bait": false,
+        "humiliation": false,
+        "shock_content": false,
+        "inflammatory": false,
+        "sexually_explicit": false,
+        "violence": false
+      },
+      "energy_level": 0.35,
+      "cognitive_load": 0.6,
+      "motivation_score": 0.4,
+      "humor_score": 0.05,
+      "skill_transfer_score": 0.5,
+      "production_quality": 0.75,
+      "session_fit": {
+        "good_opener": false,
+        "good_builder": true,
+        "good_peak": false,
+        "good_closer": true
+      }
+    },
+    "provider": { "id": "good-vibes-main", "guardrail_pass": true, "guardrail_version": "0.1.0" }
+  },
+  {
+    "sep_version": "0.1.0",
+    "item_id": "aaaaaaaa-0008-4000-8000-000000000008",
+    "source": {
+      "platform": "youtube",
+      "origin_url": "https://www.youtube.com/watch?v=peak2",
+      "origin_id": "peak2",
+      "content_type": "video",
+      "duration_seconds": 360
+    },
+    "meta": {
+      "title": "HIIT Workout — No Equipment Needed",
+      "creator": "FitLife",
+      "published": "2026-02-18T07:00:00Z",
+      "original_tags": ["hiit", "workout", "fitness"],
+      "language": "en",
+      "thumbnail_url": "https://img.youtube.com/vi/peak2/0.jpg"
+    },
+    "enrichment": {
+      "schema_version": "0.1.0",
+      "enriched_at": "2026-02-18T10:00:00Z",
+      "categories": [{ "id": "fitness", "confidence": 0.98 }],
+      "emotional_tone": {
+        "primary": "energized",
+        "secondary": "inspired",
+        "rage_bait": false,
+        "humiliation": false,
+        "shock_content": false,
+        "inflammatory": false,
+        "sexually_explicit": false,
+        "violence": false
+      },
+      "energy_level": 0.95,
+      "cognitive_load": 0.15,
+      "motivation_score": 0.7,
+      "humor_score": 0.05,
+      "skill_transfer_score": 0.5,
+      "production_quality": 0.8,
+      "session_fit": {
+        "good_opener": false,
+        "good_builder": false,
+        "good_peak": true,
+        "good_closer": false
+      }
+    },
+    "provider": { "id": "good-vibes-main", "guardrail_pass": true, "guardrail_version": "0.1.0" }
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "name": "good-vibes-pae",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Personal Algorithm Engine — consumer-side content curation, session composition, and multi-provider orchestration",
+  "scripts": {
+    "start": "node src/pae.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
