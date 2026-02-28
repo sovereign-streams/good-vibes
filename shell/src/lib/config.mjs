@@ -26,7 +26,7 @@ const consumerRoot = resolve(shellRoot, '../consumer');
 
 export const ShellConfig = {
   /** HTTP server port */
-  port: envInt('SHELL_PORT', 3800),
+  port: envInt('SHELL_PORT', 3900),
 
   /** Bind address — 0.0.0.0 so phones on the same network can access */
   host: env('SHELL_HOST', '0.0.0.0'),
