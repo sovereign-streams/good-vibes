@@ -155,8 +155,7 @@ export async function render(container) {
 
 function renderPlayer(item) {
   const frame = el('div', { className: 'player-frame' });
-  const url = item.source?.url || '';
-  const videoId = extractYouTubeId(url);
+  const videoId = item.source?.origin_id || extractYouTubeId(item.source?.origin_url || '');
 
   if (videoId) {
     const iframe = document.createElement('iframe');

@@ -148,13 +148,13 @@ async function startSession(profileId, duration) {
 
   try {
     const opts = {};
-    if (profileId) opts.profile_id = profileId;
+    if (profileId) opts.profileId = profileId;
     if (duration) opts.target_duration_minutes = duration;
 
     const session = await api.createSession(opts);
-    const content = await api.requestContent(session.session_id);
 
-    state.activeSession = { ...session, composed: content.composed };
+    // Content is returned inline from createSession
+    state.activeSession = { ...session, composed: session.content?.composed || null };
     state.currentItemIndex = 0;
     state.sessionComplete = false;
     state.engagements = {};
