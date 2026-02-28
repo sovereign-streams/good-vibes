@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://goodvibes.app/schemas/2026-02-28/consumer-intent.schema.json",
+  "title": "SEP Consumer Intent",
+  "description": "Describes a consumer's request to a stream provider. The consumer defines what kind of session it wants, how content should be weighted and filtered, and how much information it is willing to disclose. The consumer always controls disclosure — the provider works with what it receives.",
+  "type": "object",
+  "required": ["sep_version", "consumer_id", "intent", "disclosure_level", "telemetry_opt_in"],
+  "additionalProperties": false,
+  "properties": {
+    "sep_version": {
+      "type": "string",
+      "description": "The version of the Stream Exchange Protocol this intent conforms to.",
+      "examples": ["0.1.0"]
+    },
+    "consumer_id": {
+      "type": "string",
+      "description": "An identifier for the consumer. May be anonymous, pseudonymous, or a real identity depending on the consumer's choice."
+    },
+    "intent": {
+      "$ref": "#/$defs/intent"
+    },
+    "disclosure_level": {
+      "$ref": "#/$defs/disclosure_level"
+    },
+    "telemetry_opt_in": {
+      "type": "boolean",
+      "description": "Whether the consumer opts in to sharing engagement telemetry with the provider after the session. Telemetry exchange is always voluntary."
+    }
+  },
+  "$defs": {
+    "unit_interval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "A normalized score between 0 and 1 inclusive."
+    },
+    "disclosure_level": {
+      "type": "string",
+      "enum": ["minimal", "standard", "full"],
+      "description": "Controls how much information the consumer shares with the provider. 'minimal': only weights and filters, no behavioral history. 'standard': weights, filters, plus recent anonymized session summaries. 'full': weights, filters, and full behavioral profile for hyper-personalization."
+    },
+    "session_type": {
+      "type": "string",
+      "enum": ["composed", "browse", "search"],
+      "description": "The type of session the consumer is requesting. 'composed': a structured session arc with pacing and narrative flow. 'browse': an open-ended exploration of available content. 'search': a targeted query for specific content."
+    },
+    "weights": {
+      "type": "object",
+      "description": "Category weight distribution defining the consumer's desired content mix. Keys are category identifiers from the enrichment taxonomy, values are normalized weights between 0 and 1. Weights do not need to sum to 1 — they express relative preference.",
+      "additionalProperties": {
+        "$ref": "#/$defs/unit_interval"
+      },
+      "examples": [
+        {
+          "fitness": 0.25,
+          "humor": 0.20,
+          "skill_building": 0.20,
+          "motivation": 0.15,
+          "craft": 0.10,
+          "music": 0.10
+        }
+      ]
+    },
+    "filters": {
+      "type": "object",
+      "description": "Hard filters that exclude content matching certain criteria. These are non-negotiable boundaries set by the consumer.",
+      "additionalProperties": false,
+      "properties": {
+        "exclude_rage_bait": {
+          "type": "boolean",
+          "description": "Exclude content flagged as rage bait.",
+          "default": true
+        },
+        "exclude_humiliation": {
+          "type": "boolean",
+          "description": "Exclude content flagged as deriving entertainment from humiliation.",
+          "default": true
+        },
+        "exclude_shock_content": {
+          "type": "boolean",
+          "description": "Exclude content flagged as relying on shock value.",
+          "default": true
+        },
+        "min_energy_level": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "Minimum energy level for returned content."
+        },
+        "max_cognitive_load": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "Maximum cognitive load for returned content."
+        },
+        "language": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Acceptable content languages as BCP 47 tags. If empty or omitted, no language filter is applied.",
+          "examples": [["en"], ["en", "es"]]
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "description": "Optional contextual information about the consumer's current state. Helps the provider tailor responses without requiring a full behavioral profile.",
+      "additionalProperties": false,
+      "properties": {
+        "time_of_day": {
+          "type": "string",
+          "description": "A human-readable label for the current time of day, used to adjust content tone and energy.",
+          "examples": ["morning", "afternoon", "evening", "night"]
+        },
+        "session_number_today": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "How many sessions the consumer has had today. Helps the provider avoid repetition and adjust intensity."
+        },
+        "state_token": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "null" }
+          ],
+          "description": "An opaque token from a previous provider response, enabling stateful multi-round exchanges without the provider storing user profiles. Null for the first request in a session."
+        }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "description": "The consumer's content intent for this request. Defines session type, duration, category weights, content filters, and contextual signals.",
+      "required": ["session_type", "target_duration_minutes", "weights", "filters", "context"],
+      "additionalProperties": false,
+      "properties": {
+        "session_type": {
+          "$ref": "#/$defs/session_type"
+        },
+        "target_duration_minutes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The consumer's desired session duration in minutes. The provider uses this to calibrate how many items to return."
+        },
+        "weights": {
+          "$ref": "#/$defs/weights"
+        },
+        "filters": {
+          "$ref": "#/$defs/filters"
+        },
+        "context": {
+          "$ref": "#/$defs/context"
+        }
+      }
+    }
+  }
+}

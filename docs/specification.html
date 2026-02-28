@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEP Protocol Specification — Good Vibes</title>
+  <meta name="description" content="The Stream Exchange Protocol (SEP) specification. An open protocol for exchanging metadata-driven content between sovereign providers and consumers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/img/good-vibes-logo.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/img/good-vibes-logo.svg" alt="Good Vibes logo" width="32" height="32">
+        Good Vibes
+      </a>
+      <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="whitepaper.html">White Paper</a></li>
+        <li><a href="specification.html" class="active">Specification</a></li>
+        <li><a href="taxonomy.html">Taxonomy</a></li>
+        <li><a href="examples.html">Examples</a></li>
+        <li><a href="https://github.com" class="nav__github" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <div class="container">
+      <span class="hero__badge">Protocol Specification</span>
+      <h1>Stream Exchange Protocol (SEP)</h1>
+      <p>Version 0.1.0 &mdash; An open protocol for exchanging metadata-driven content between sovereign providers and consumers.</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <section>
+    <div class="container">
+      <div class="content-with-toc">
+        <aside class="toc">
+          <div class="toc__title">Contents</div>
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#design-philosophy">Design Philosophy</a></li>
+            <li><a href="#meta-first">Meta-First Principle</a></li>
+            <li><a href="#enrichment-envelope">Enrichment Envelope</a></li>
+            <li><a href="#consumer-intent">Consumer Intent</a></li>
+            <li><a href="#provider-response">Provider Response</a></li>
+            <li><a href="#provider-manifest">Provider Manifest</a></li>
+            <li><a href="#telemetry">Telemetry Exchange</a></li>
+            <li><a href="#exchange-models">Exchange Models</a></li>
+            <li><a href="#privacy">Privacy Architecture</a></li>
+            <li><a href="#versioning">Versioning</a></li>
+          </ul>
+        </aside>
+
+        <div class="content">
+
+          <!-- Overview -->
+          <div class="spec-section" id="overview">
+            <h2><span class="section-num">1</span> Overview</h2>
+            <p>The Stream Exchange Protocol (SEP) defines how Stream Providers and Stream Consumers exchange metadata-driven content through structured negotiation. SEP is content-agnostic &mdash; it defines the exchange format, not the content type. A stream could be video metadata, podcast metadata, article summaries, music tracks, dashboard data, or any structured content.</p>
+            <p>The protocol doesn't care what flows through it &mdash; only how it's described and negotiated.</p>
+            <div class="spec-callout">
+              <p><strong>Protocol version:</strong> <code>0.1.0</code> &mdash; This is a draft specification. Breaking changes are expected before <code>1.0.0</code>.</p>
+            </div>
+            <p>SEP defines five message types:</p>
+            <ol>
+              <li><strong>Enrichment Envelope</strong> &mdash; Semantically tagged content metadata</li>
+              <li><strong>Consumer Intent</strong> &mdash; What the consumer is looking for</li>
+              <li><strong>Provider Response</strong> &mdash; Curated payload of enriched items</li>
+              <li><strong>Provider Manifest</strong> &mdash; Provider capabilities and handshake</li>
+              <li><strong>Telemetry Exchange</strong> &mdash; Optional engagement metrics</li>
+            </ol>
+          </div>
+
+          <!-- Design Philosophy -->
+          <div class="spec-section" id="design-philosophy">
+            <h2><span class="section-num">2</span> Design Philosophy</h2>
+            <p>SEP is built on several foundational principles:</p>
+            <ul>
+              <li><strong>Consumer sovereignty</strong> &mdash; The consumer always controls what it shares and how content is filtered</li>
+              <li><strong>Provider transparency</strong> &mdash; Providers publish their curation standards openly</li>
+              <li><strong>Metadata exchange</strong> &mdash; Streams exchange metadata, not full media. Full media is lazy-loaded by the consumer</li>
+              <li><strong>Content agnosticism</strong> &mdash; The protocol has no opinion about content. Only format.</li>
+              <li><strong>Privacy by default</strong> &mdash; State lives on the consumer side. Providers see only what is explicitly shared.</li>
+              <li><strong>Lightweight and self-hostable</strong> &mdash; No dependency on any platform's infrastructure</li>
+            </ul>
+          </div>
+
+          <!-- Meta-First -->
+          <div class="spec-section" id="meta-first">
+            <h2><span class="section-num">3</span> Meta-First Principle</h2>
+            <p>SEP payloads contain metadata, not full media. A SEP payload contains:</p>
+            <ul>
+              <li>Semantic tags (categories, emotional tone, scores)</li>
+              <li>Source pointers (URLs to origin content)</li>
+              <li>Enrichment scores (energy, cognitive load, motivation, etc.)</li>
+              <li>Provider confidence ratings</li>
+            </ul>
+            <p>Full media is lazy-loaded by the consumer only when needed. This keeps the protocol lightweight and cost-effective. You're indexing meaning, not storing video blobs.</p>
+          </div>
+
+          <!-- Enrichment Envelope -->
+          <div class="spec-section" id="enrichment-envelope">
+            <h2><span class="section-num">4</span> Enrichment Envelope Schema</h2>
+            <p>Every content item in a SEP stream carries an enrichment envelope. This is the core data structure of the protocol &mdash; a semantically tagged description of a piece of content.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Enrichment Envelope</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "item_id": "uuid-v4",
+  "source": {
+    "platform": "youtube",
+    "origin_url": "https://youtube.com/watch?v=...",
+    "origin_id": "dQw4w9WgXcQ",
+    "content_type": "video",
+    "duration_seconds": 342
+  },
+  "meta": {
+    "title": "How to Build a Surfboard from Scratch",
+    "creator": "Shaping Bay",
+    "published": "2026-01-15T00:00:00Z",
+    "original_tags": ["surfboard", "woodworking", "craft"],
+    "language": "en",
+    "thumbnail_url": "https://..."
+  },
+  "enrichment": {
+    "schema_version": "0.1.0",
+    "enriched_at": "2026-02-28T12:00:00Z",
+    "categories": [
+      { "id": "craft", "confidence": 0.92 },
+      { "id": "skill_building", "confidence": 0.85 },
+      { "id": "relaxation", "confidence": 0.71 }
+    ],
+    "emotional_tone": {
+      "primary": "calm",
+      "secondary": "focused",
+      "rage_bait": false,
+      "humiliation": false,
+      "shock_content": false,
+      "inflammatory": false
+    },
+    "energy_level": 0.35,
+    "cognitive_load": 0.45,
+    "motivation_score": 0.40,
+    "humor_score": 0.10,
+    "skill_transfer_score": 0.80,
+    "session_fit": {
+      "good_opener": false,
+      "good_builder": true,
+      "good_peak": false,
+      "good_closer": true
+    }
+  },
+  "provider": {
+    "id": "good-vibes-main",
+    "guardrail_pass": true,
+    "guardrail_version": "0.1.0"
+  }
+}</code></pre>
+            </div>
+
+            <h3>Field Reference</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>sep_version</code></td><td>string</td><td>Protocol version (semver)</td></tr>
+                  <tr><td><code>item_id</code></td><td>UUID v4</td><td>Unique identifier for this enriched item</td></tr>
+                  <tr><td><code>source</code></td><td>object</td><td>Origin platform and content pointer</td></tr>
+                  <tr><td><code>source.platform</code></td><td>string</td><td>Origin platform identifier (e.g., "youtube", "rss", "podcast")</td></tr>
+                  <tr><td><code>source.origin_url</code></td><td>URL</td><td>Direct link to the original content</td></tr>
+                  <tr><td><code>source.content_type</code></td><td>string</td><td>Content type: video, podcast, music, article</td></tr>
+                  <tr><td><code>meta</code></td><td>object</td><td>Original metadata from the source</td></tr>
+                  <tr><td><code>enrichment</code></td><td>object</td><td>LLM-generated semantic tags and scores</td></tr>
+                  <tr><td><code>enrichment.categories</code></td><td>array</td><td>Category matches with confidence scores</td></tr>
+                  <tr><td><code>enrichment.emotional_tone</code></td><td>object</td><td>Primary/secondary tone + boolean safety flags</td></tr>
+                  <tr><td><code>enrichment.session_fit</code></td><td>object</td><td>Session position suitability flags</td></tr>
+                  <tr><td><code>provider</code></td><td>object</td><td>Provider metadata and guardrail status</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Consumer Intent -->
+          <div class="spec-section" id="consumer-intent">
+            <h2><span class="section-num">5</span> Consumer Intent Schema</h2>
+            <p>When a consumer queries a provider, it sends an intent payload describing what it's looking for. The consumer controls how much information it reveals to the provider.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Consumer Intent</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "consumer_id": "anonymous-or-identified",
+  "intent": {
+    "session_type": "composed",
+    "target_duration_minutes": 15,
+    "weights": {
+      "fitness": 0.25,
+      "humor": 0.20,
+      "skill_building": 0.20,
+      "motivation": 0.15,
+      "craft": 0.10,
+      "music": 0.10
+    },
+    "filters": {
+      "exclude_rage_bait": true,
+      "exclude_humiliation": true,
+      "exclude_shock_content": true,
+      "min_energy_level": 0.2,
+      "max_cognitive_load": 0.7,
+      "language": ["en"]
+    },
+    "context": {
+      "time_of_day": "morning",
+      "session_number_today": 1,
+      "state_token": null
+    }
+  },
+  "disclosure_level": "minimal",
+  "telemetry_opt_in": false
+}</code></pre>
+            </div>
+
+            <h3>Disclosure Levels</h3>
+            <p>The consumer always chooses its disclosure level. The provider works with what it gets.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Level</th>
+                    <th>What the Provider Sees</th>
+                    <th>Use Case</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>minimal</code></td>
+                    <td>Only weights and filters. No behavioral history.</td>
+                    <td>Maximum privacy. Good for first-time queries.</td>
+                  </tr>
+                  <tr>
+                    <td><code>standard</code></td>
+                    <td>Weights, filters, plus recent session summaries (anonymized).</td>
+                    <td>Better personalization with moderate privacy.</td>
+                  </tr>
+                  <tr>
+                    <td><code>full</code></td>
+                    <td>Weights, filters, full behavioral profile.</td>
+                    <td>Maximum personalization. Provider can hyper-personalize.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Provider Response -->
+          <div class="spec-section" id="provider-response">
+            <h2><span class="section-num">6</span> Provider Response Schema</h2>
+            <p>The provider responds with a curated payload of enriched items, along with metadata about the response quality and provider capabilities.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Provider Response</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "provider_id": "good-vibes-main",
+  "response_type": "payload",
+  "payload": {
+    "items": [
+      {
+        "item_id": "uuid-1",
+        "source": { "platform": "youtube", "origin_id": "abc123" },
+        "meta": { "title": "5-Minute Morning Stretch Routine" },
+        "enrichment": {}
+      },
+      {
+        "item_id": "uuid-2",
+        "source": { "platform": "youtube", "origin_id": "def456" },
+        "meta": { "title": "Why Stoics Wake Up at 5 AM" },
+        "enrichment": {}
+      }
+    ],
+    "total_available": 847,
+    "returned": 50,
+    "confidence": 0.78,
+    "suggested_arc": [
+      "humor", "humor", "skill", "skill",
+      "skill", "motivation", "craft", "music"
+    ],
+    "state_token": "opaque-token-for-stateful-followup"
+  },
+  "capabilities": {
+    "supports_stateful": true,
+    "supports_full_index_browse": false,
+    "supports_telemetry_exchange": true,
+    "max_payload_size": 100
+  }
+}</code></pre>
+            </div>
+
+            <div class="spec-callout">
+              <p><strong>Note:</strong> The <code>suggested_arc</code> field is a recommendation from the provider. The consumer's PAE makes the final sequencing decision based on local preferences and session rules.</p>
+            </div>
+          </div>
+
+          <!-- Provider Manifest -->
+          <div class="spec-section" id="provider-manifest">
+            <h2><span class="section-num">7</span> Provider Manifest Schema</h2>
+            <p>The provider manifest is the handshake document. It declares the provider's identity, capabilities, supported exchange models, guardrails, and rate limits. Both sides use this to negotiate the exchange.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Provider Manifest</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "provider_id": "good-vibes-main",
+  "provider_name": "Good Vibes",
+  "description": "Cognitive environment designer for positive content consumption",
+  "endpoint": "https://api.goodvibes.app/sep/v1",
+  "supported_models": ["negotiated", "curated_payload"],
+  "supported_content_types": ["video", "podcast", "music", "article"],
+  "guardrails": {
+    "published": true,
+    "url": "https://goodvibes.app/guardrails",
+    "version": "0.1.0"
+  },
+  "enrichment_schema_version": "0.1.0",
+  "max_payload_size": 100,
+  "rate_limit": {
+    "requests_per_minute": 30,
+    "daily_cap": 1000
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- Telemetry -->
+          <div class="spec-section" id="telemetry">
+            <h2><span class="section-num">8</span> Telemetry Exchange Schema</h2>
+            <p>If the consumer opts in, it can share engagement metrics back to the provider. This creates a value exchange: the provider gets signal quality data, the consumer gets better future payloads. Telemetry is <strong>never required</strong>.</p>
+
+            <div class="code-block" data-lang="json">
+              <div class="code-block__header">
+                <span class="code-block__label">Telemetry Exchange</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <pre><code class="json">{
+  "sep_version": "0.1.0",
+  "telemetry": {
+    "session_id": "uuid",
+    "items": [
+      {
+        "item_id": "uuid",
+        "viewed": true,
+        "view_duration_seconds": 45,
+        "completed": false,
+        "liked": false,
+        "skipped_at_seconds": 45,
+        "rewatched": false,
+        "paused": true,
+        "paused_at_seconds": 22
+      }
+    ],
+    "session_completed": true,
+    "session_satisfaction": 0.8
+  }
+}</code></pre>
+            </div>
+
+            <div class="spec-callout">
+              <p><strong>Privacy note:</strong> Telemetry is aggregated before sending (if opted in). No behavioral fingerprinting from telemetry data. The consumer controls the granularity.</p>
+            </div>
+          </div>
+
+          <!-- Exchange Models -->
+          <div class="spec-section" id="exchange-models">
+            <h2><span class="section-num">9</span> Exchange Models</h2>
+            <p>The protocol supports multiple exchange patterns. Both sides declare what they support during the initial manifest handshake.</p>
+
+            <h3>Model A: Provider-Curated Payload</h3>
+            <p>Consumer sends intent. Provider filters heavily and returns a curated set. This is the simplest model. The provider has more influence over results.</p>
+
+            <h3>Model B: Full Meta-Index Browse</h3>
+            <p>Provider exposes its entire metadata index. Consumer queries directly against it, like a search engine. This offers the most consumer sovereignty but is the most expensive for the provider. The provider can observe query patterns.</p>
+
+            <h3>Model C: Negotiated Exchange (Recommended Default)</h3>
+            <p>Consumer sends intent with chosen disclosure level. Provider returns a ranked payload with confidence scores and alternative clusters. Consumer refines locally using its PAE. Multiple round-trips are expected. State tokens enable continuity without the provider storing user profiles.</p>
+
+            <div class="spec-callout">
+              <p><strong>Recommended:</strong> Model C (Negotiated Exchange) is the recommended default. It balances consumer sovereignty with provider efficiency and supports progressive refinement through state tokens.</p>
+            </div>
+          </div>
+
+          <!-- Privacy -->
+          <div class="spec-section" id="privacy">
+            <h2><span class="section-num">10</span> Privacy Architecture</h2>
+            <p>Core rule: <strong>State lives primarily on the consumer side.</strong></p>
+            <p>The provider sees only what the consumer chooses to share. The consumer's PAE does the heavy personalization work locally. The provider's job is to return a good-enough payload &mdash; not to build a user profile.</p>
+
+            <h3>Privacy-Preserving Measures</h3>
+            <ul>
+              <li>Disclosure levels control what the provider sees</li>
+              <li>State tokens are opaque &mdash; the provider stores session continuity, not behavioral profiles</li>
+              <li>Telemetry is aggregated before sending (if opted in)</li>
+              <li>No behavioral fingerprinting from intent vectors &mdash; consumers can rotate or generalize their weight vectors</li>
+              <li>The consumer can query multiple providers with different disclosure levels</li>
+            </ul>
+          </div>
+
+          <!-- Versioning -->
+          <div class="spec-section" id="versioning">
+            <h2><span class="section-num">11</span> Versioning Strategy</h2>
+            <p>SEP uses dual versioning:</p>
+
+            <h3>Semantic Versioning (Protocol)</h3>
+            <p>The protocol version follows semver: <code>0.1.0</code>, <code>0.2.0</code>, <code>1.0.0</code>. Breaking changes increment the major version. New features increment the minor version. Bug fixes increment the patch version.</p>
+
+            <h3>Date-Based Snapshots (Schema)</h3>
+            <p>Schema releases use date-based snapshots: <code>spec/2026-02-28/</code>. This allows for reproducible schema definitions pinned to a specific release date.</p>
+
+            <h3>Enrichment Schema Versioning</h3>
+            <p>Enrichment schemas are versioned independently from the protocol. A consumer can request items enriched at a minimum schema version. Old enrichments remain valid at their declared version.</p>
+            <ul>
+              <li>Every enriched record carries <code>enrichment.schema_version</code></li>
+              <li>New queries can specify <code>min_schema_version</code></li>
+              <li>Re-enrichment is done on-access (lazy) or via batch script</li>
+              <li>Breaking changes = major, new dimensions = minor, fixes = patch</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/good-vibes-logo.svg" alt="" width="24" height="24">
+        Good Vibes &mdash; Personal Algorithm Engine
+      </div>
+      <ul class="footer__links">
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="taxonomy.html">Taxonomy</a></li>
+        <li><a href="whitepaper.html">White Paper</a></li>
+        <li><a href="examples.html">Examples</a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

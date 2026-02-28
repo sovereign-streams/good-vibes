@@ -1,0 +1,81 @@
+{
+  "version": "0.1.0",
+  "description": "Good Vibes content guardrail rules. These define what content is excluded or flagged.",
+  "hard_exclusions": [
+    {
+      "id": "violence",
+      "name": "Graphic Violence",
+      "description": "Content containing graphic violence or gore",
+      "flag": "violence",
+      "action": "fail"
+    },
+    {
+      "id": "sexually_explicit",
+      "name": "Sexually Explicit",
+      "description": "Pornography or sexually explicit content",
+      "flag": "sexually_explicit",
+      "action": "fail"
+    },
+    {
+      "id": "self_harm",
+      "name": "Self-Harm",
+      "description": "Content promoting self-harm or suicide",
+      "keywords": ["self-harm", "suicide method", "how to hurt yourself"],
+      "action": "fail"
+    },
+    {
+      "id": "extreme_degradation",
+      "name": "Extreme Degradation",
+      "description": "Extreme degradation or humiliation content",
+      "flag": "humiliation",
+      "action": "fail"
+    },
+    {
+      "id": "harassment",
+      "name": "Targeted Harassment",
+      "description": "Content that constitutes targeted harassment of individuals",
+      "keywords": ["doxxing", "targeted harassment", "cyberbullying"],
+      "action": "fail"
+    },
+    {
+      "id": "extremism",
+      "name": "Extremist Recruitment",
+      "description": "Content designed to recruit for extremist ideologies",
+      "keywords": ["join the movement", "race war", "extremist recruitment"],
+      "action": "fail"
+    }
+  ],
+  "soft_filters": [
+    {
+      "id": "inflammatory_politics",
+      "name": "Inflammatory Politics",
+      "description": "Inflammatory political content designed to divide",
+      "flag": "inflammatory",
+      "default_action": "reduce_weight",
+      "weight_modifier": 0.3
+    },
+    {
+      "id": "profanity",
+      "name": "Profanity-Heavy",
+      "description": "Content with excessive profanity",
+      "default_action": "allow",
+      "configurable": true
+    },
+    {
+      "id": "gambling_crypto",
+      "name": "Gambling/Crypto Promotion",
+      "description": "Content primarily promoting gambling or cryptocurrency speculation",
+      "keywords": ["crypto gains", "betting tips", "gambling strategy"],
+      "default_action": "reduce_weight",
+      "weight_modifier": 0.5
+    },
+    {
+      "id": "sponsored",
+      "name": "Sponsored Content",
+      "description": "Content that is primarily a paid advertisement or native ad",
+      "default_action": "allow",
+      "tag_as": "sponsored",
+      "configurable": true
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://goodvibes.app/schemas/2026-02-28/provider-response.schema.json",
+  "title": "SEP Provider Response",
+  "description": "The response from a stream provider to a consumer intent request. Contains a payload of enrichment envelopes, confidence scoring, a suggested session arc, and the provider's capability declarations. Supports multiple response types including payloads, errors, and redirects.",
+  "type": "object",
+  "required": ["sep_version", "provider_id", "response_type"],
+  "additionalProperties": false,
+  "properties": {
+    "sep_version": {
+      "type": "string",
+      "description": "The version of the Stream Exchange Protocol this response conforms to.",
+      "examples": ["0.1.0"]
+    },
+    "provider_id": {
+      "type": "string",
+      "description": "The unique identifier of the stream provider issuing this response.",
+      "examples": ["good-vibes-main"]
+    },
+    "response_type": {
+      "$ref": "#/$defs/response_type"
+    },
+    "payload": {
+      "$ref": "#/$defs/payload"
+    },
+    "error": {
+      "$ref": "#/$defs/error"
+    },
+    "redirect": {
+      "$ref": "#/$defs/redirect"
+    },
+    "capabilities": {
+      "$ref": "#/$defs/capabilities"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "response_type": { "const": "payload" } },
+        "required": ["response_type"]
+      },
+      "then": {
+        "required": ["payload"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "response_type": { "const": "error" } },
+        "required": ["response_type"]
+      },
+      "then": {
+        "required": ["error"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "response_type": { "const": "redirect" } },
+        "required": ["response_type"]
+      },
+      "then": {
+        "required": ["redirect"]
+      }
+    }
+  ],
+  "$defs": {
+    "response_type": {
+      "type": "string",
+      "enum": ["payload", "error", "redirect"],
+      "description": "The type of response. 'payload': a successful response with content items. 'error': an error condition. 'redirect': the consumer should re-issue the request to a different endpoint."
+    },
+    "unit_interval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "A normalized score between 0 and 1 inclusive."
+    },
+    "enrichment_envelope_ref": {
+      "$ref": "https://goodvibes.app/schemas/2026-02-28/enrichment-envelope.schema.json",
+      "description": "A full SEP enrichment envelope for a content item."
+    },
+    "payload": {
+      "type": "object",
+      "description": "The content payload returned by the provider. Contains enrichment envelopes, count metadata, a confidence score for the overall match, and an optional suggested session arc.",
+      "required": ["items", "total_available", "returned", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enrichment_envelope_ref"
+          },
+          "description": "An array of enrichment envelopes matching the consumer's intent, ordered by relevance."
+        },
+        "total_available": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The total number of items in the provider's index that matched the consumer's intent, before pagination."
+        },
+        "returned": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The number of items actually returned in this response."
+        },
+        "confidence": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "The provider's overall confidence that this payload satisfies the consumer's intent."
+        },
+        "suggested_arc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A suggested session arc — an ordered sequence of category labels that the provider recommends for optimal pacing and narrative structure.",
+          "examples": [["humor", "humor", "skill", "skill", "skill", "motivation", "craft", "music"]]
+        },
+        "state_token": {
+          "type": "string",
+          "description": "An opaque token the consumer can include in subsequent requests to enable stateful multi-round exchanges without the provider storing user profiles."
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "description": "Error details when the response_type is 'error'.",
+      "required": ["code", "message"],
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "A machine-readable error code.",
+          "examples": ["INVALID_INTENT", "RATE_LIMITED", "INTERNAL_ERROR", "UNSUPPORTED_MODEL"]
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable error message."
+        },
+        "retry_after_seconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "If rate-limited, the number of seconds the consumer should wait before retrying."
+        }
+      }
+    },
+    "redirect": {
+      "type": "object",
+      "description": "Redirect details when the response_type is 'redirect'.",
+      "required": ["target_url", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "target_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL the consumer should re-issue its request to."
+        },
+        "reason": {
+          "type": "string",
+          "description": "A human-readable explanation for the redirect."
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "description": "The provider's capability declarations. Informs the consumer what exchange models and features this provider supports.",
+      "additionalProperties": false,
+      "properties": {
+        "supports_stateful": {
+          "type": "boolean",
+          "description": "Whether the provider supports stateful multi-round exchanges via state tokens."
+        },
+        "supports_full_index_browse": {
+          "type": "boolean",
+          "description": "Whether the provider supports Model B (full meta-index browse), allowing the consumer to query the entire metadata index directly."
+        },
+        "supports_telemetry_exchange": {
+          "type": "boolean",
+          "description": "Whether the provider accepts telemetry data from consumers who opt in."
+        },
+        "max_payload_size": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The maximum number of enrichment envelopes the provider will return in a single response."
+        }
+      }
+    }
+  }
+}

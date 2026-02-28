@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag Taxonomy Reference — Good Vibes</title>
+  <meta name="description" content="Complete tag taxonomy reference for the Good Vibes enrichment pipeline. Categories, emotional tones, scoring dimensions, session fit flags, and guardrail rules.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/img/good-vibes-logo.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/img/good-vibes-logo.svg" alt="Good Vibes logo" width="32" height="32">
+        Good Vibes
+      </a>
+      <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="whitepaper.html">White Paper</a></li>
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="taxonomy.html" class="active">Taxonomy</a></li>
+        <li><a href="examples.html">Examples</a></li>
+        <li><a href="https://github.com" class="nav__github" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <div class="container">
+      <span class="hero__badge">Reference v0.1.0</span>
+      <h1>Tag Taxonomy Reference</h1>
+      <p>Complete reference for the Good Vibes enrichment taxonomy &mdash; categories, emotional tones, scoring dimensions, session fit flags, and guardrail rules.</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <section>
+    <div class="container">
+      <div class="content-with-toc">
+        <aside class="toc">
+          <div class="toc__title">Contents</div>
+          <ul>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#emotional-tone">Emotional Tone</a></li>
+            <li><a href="#scoring">Scoring Dimensions</a></li>
+            <li><a href="#session-fit">Session Fit Flags</a></li>
+            <li><a href="#guardrails">Guardrail Rules</a></li>
+          </ul>
+        </aside>
+
+        <div class="content">
+
+          <!-- Categories -->
+          <div class="spec-section" id="categories">
+            <h2><span class="section-num">1</span> Content Categories</h2>
+            <p>The enrichment pipeline assigns one or more categories to each content item, each with a confidence score from 0.0 to 1.0. The initial taxonomy defines 12 categories targeting the first-wedge audience.</p>
+
+            <div class="taxonomy-grid">
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">fitness</span>
+                <h4>Fitness</h4>
+                <p>Exercise, training, body health, physical performance.</p>
+                <span class="taxonomy-card__examples">Workout tutorials, form guides, training programs, mobility routines</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">nutrition</span>
+                <h4>Nutrition</h4>
+                <p>Diet, cooking, food science, healthy eating.</p>
+                <span class="taxonomy-card__examples">Meal prep, nutrition breakdowns, recipe walkthroughs, supplement science</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">skill_building</span>
+                <h4>Skill Building</h4>
+                <p>Learning new abilities, practical education, tutorials.</p>
+                <span class="taxonomy-card__examples">Language learning, coding tutorials, photography tips, public speaking</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">humor</span>
+                <h4>Humor</h4>
+                <p>Comedy, funny fails, light entertainment, amusement.</p>
+                <span class="taxonomy-card__examples">Comedy sketches, fail compilations, stand-up clips, meme reviews</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">motivation</span>
+                <h4>Motivation</h4>
+                <p>Inspirational, discipline, mindset, drive to action.</p>
+                <span class="taxonomy-card__examples">Motivational speeches, success stories, discipline frameworks, morning routines</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">craft</span>
+                <h4>Craft</h4>
+                <p>Making things, woodworking, building, hands-on creation.</p>
+                <span class="taxonomy-card__examples">Surfboard shaping, shelter building, knife making, leather work</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">stoicism</span>
+                <h4>Stoicism</h4>
+                <p>Philosophy, mental frameworks, resilience, emotional regulation.</p>
+                <span class="taxonomy-card__examples">Stoic philosophy explainers, mental models, Marcus Aurelius, cognitive reframing</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">fatherhood</span>
+                <h4>Fatherhood</h4>
+                <p>Parenting, family, role modeling, dad life.</p>
+                <span class="taxonomy-card__examples">Dad advice, family activities, parenting strategies, work-life balance</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">entrepreneurship</span>
+                <h4>Entrepreneurship</h4>
+                <p>Business, hustle, career growth, professional development.</p>
+                <span class="taxonomy-card__examples">Startup advice, business strategy, side hustle guides, negotiation skills</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">music</span>
+                <h4>Music</h4>
+                <p>Music tracks, playlists, performance, audio experiences.</p>
+                <span class="taxonomy-card__examples">Pump-up tracks, chill beats, live performances, genre deep-dives</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">nature</span>
+                <h4>Nature</h4>
+                <p>Outdoors, exploration, bushcraft, adventure.</p>
+                <span class="taxonomy-card__examples">Camping, hiking, survival skills, wildlife documentaries, outdoor cooking</span>
+              </div>
+              <div class="taxonomy-card">
+                <span class="taxonomy-card__id">relaxation</span>
+                <h4>Relaxation</h4>
+                <p>Calm content, ASMR, slow crafting, low-energy restoration.</p>
+                <span class="taxonomy-card__examples">Woodworking ASMR, pottery, slow cooking, rain sounds, ambient walks</span>
+              </div>
+            </div>
+
+            <div class="spec-callout mt-3">
+              <p><strong>Extensibility:</strong> The taxonomy is versioned independently. New categories can be added in minor version bumps. Existing records remain valid at their declared schema version and can be re-enriched against the latest taxonomy.</p>
+            </div>
+          </div>
+
+          <!-- Emotional Tone -->
+          <div class="spec-section" id="emotional-tone">
+            <h2><span class="section-num">2</span> Emotional Tone Dimensions</h2>
+            <p>Every enriched item carries an emotional tone assessment with primary and secondary tone labels, plus boolean safety flags.</p>
+
+            <h3>Tone Labels</h3>
+            <p>The <code>primary_tone</code> and <code>secondary_tone</code> fields use these defined values. Secondary tone is nullable.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Tone</th>
+                    <th>Description</th>
+                    <th>Typical Content</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="tag tag--blue">calm</span></td>
+                    <td>Low-energy, soothing, grounding</td>
+                    <td>Nature walks, ASMR, meditation guides</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag tag--blue">focused</span></td>
+                    <td>Concentrated attention, deep engagement</td>
+                    <td>Tutorials, detailed explanations, craft processes</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag tag--coral">energized</span></td>
+                    <td>High activation, physical or mental arousal</td>
+                    <td>Workout videos, hype compilations, sports highlights</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag tag--amber">amused</span></td>
+                    <td>Lighthearted, entertaining, humor-inducing</td>
+                    <td>Comedy, fail compilations, meme content</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag tag--coral">inspired</span></td>
+                    <td>Uplifting, motivating, purpose-activating</td>
+                    <td>Success stories, motivational speakers, transformation journeys</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag tag--blue">reflective</span></td>
+                    <td>Thought-provoking, introspective, contemplative</td>
+                    <td>Philosophy, life advice, documentary essays</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="mt-4">Safety Flags (Boolean)</h3>
+            <p>These boolean flags identify potentially harmful content characteristics. They are always assessed regardless of category.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Flag</th>
+                    <th>Description</th>
+                    <th>Default Behavior</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>rage_bait</code></td>
+                    <td>Content designed to provoke outrage for engagement</td>
+                    <td><span class="tag tag--red">Excluded by default</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>humiliation</code></td>
+                    <td>Content centered on degrading or embarrassing people</td>
+                    <td><span class="tag tag--red">Excluded by default</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>shock_content</code></td>
+                    <td>Content designed primarily to shock or disturb</td>
+                    <td><span class="tag tag--red">Excluded by default</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>inflammatory</code></td>
+                    <td>Deliberately divisive or provocative content</td>
+                    <td><span class="tag tag--amber">Reduced weight</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>sexually_explicit</code></td>
+                    <td>Pornographic or explicitly sexual material</td>
+                    <td><span class="tag tag--red">Excluded by default</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>violence</code></td>
+                    <td>Graphic violence or gore</td>
+                    <td><span class="tag tag--red">Excluded by default</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Scoring Dimensions -->
+          <div class="spec-section" id="scoring">
+            <h2><span class="section-num">3</span> Scoring Dimensions</h2>
+            <p>Each enriched item carries a set of continuous scores on a 0.0 to 1.0 scale. These scores drive session composition, weight matching, and arc pacing.</p>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Dimension</th>
+                    <th>Range</th>
+                    <th>Description</th>
+                    <th>Low End (0.0)</th>
+                    <th>High End (1.0)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>energy_level</code></td>
+                    <td>0.0 &ndash; 1.0</td>
+                    <td>How much activation or arousal the content produces</td>
+                    <td>Calm, meditative, ASMR</td>
+                    <td>High-intensity workout, hype music</td>
+                  </tr>
+                  <tr>
+                    <td><code>cognitive_load</code></td>
+                    <td>0.0 &ndash; 1.0</td>
+                    <td>How much attention and thinking is required</td>
+                    <td>Ambient content, simple entertainment</td>
+                    <td>Dense tutorials, complex philosophy</td>
+                  </tr>
+                  <tr>
+                    <td><code>motivation_score</code></td>
+                    <td>0.0 &ndash; 1.0</td>
+                    <td>How much the content drives action or purpose</td>
+                    <td>Passive entertainment</td>
+                    <td>Powerful motivational speech</td>
+                  </tr>
+                  <tr>
+                    <td><code>humor_score</code></td>
+                    <td>0.0 &ndash; 1.0</td>
+                    <td>How funny or entertaining the content is</td>
+                    <td>Serious, instructional</td>
+                    <td>Hilarious comedy, peak amusement</td>
+                  </tr>
+                  <tr>
+                    <td><code>skill_transfer_score</code></td>
+                    <td>0.0 &ndash; 1.0</td>
+                    <td>How much practical knowledge is transferred</td>
+                    <td>Pure entertainment, no learning</td>
+                    <td>Step-by-step tutorial, high retention</td>
+                  </tr>
+                  <tr>
+                    <td><code>production_quality</code></td>
+                    <td>0.0 &ndash; 1.0</td>
+                    <td>Production value (audio, video, editing quality)</td>
+                    <td>Raw phone footage, poor audio</td>
+                    <td>Professional production, polished editing</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="mt-4">Example Score Profiles</h3>
+            <p>These example profiles illustrate how different content types might score across dimensions.</p>
+
+            <div class="feature-grid">
+              <div class="card">
+                <h4>Surfboard Shaping Video</h4>
+                <div class="dimension-bar"><span class="dimension-bar__label">Energy Level</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 35%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Cognitive Load</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 45%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Motivation</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 40%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Humor</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 10%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Skill Transfer</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 80%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Production Quality</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 75%"></div></div></div>
+              </div>
+              <div class="card">
+                <h4>High-Intensity Workout</h4>
+                <div class="dimension-bar"><span class="dimension-bar__label">Energy Level</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 95%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Cognitive Load</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 20%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Motivation</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 85%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Humor</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 15%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Skill Transfer</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 55%"></div></div></div>
+                <div class="dimension-bar"><span class="dimension-bar__label">Production Quality</span><div class="dimension-bar__track"><div class="dimension-bar__fill" style="width: 80%"></div></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Session Fit -->
+          <div class="spec-section" id="session-fit">
+            <h2><span class="section-num">4</span> Session Fit Flags</h2>
+            <p>Session fit flags indicate where a content item works best in a session arc. These are boolean values set by the enrichment pipeline based on the item's energy level, emotional tone, and content characteristics.</p>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Flag</th>
+                    <th>Description</th>
+                    <th>Typical Characteristics</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>good_opener</code></td>
+                    <td>Suitable to start a session</td>
+                    <td>Light, engaging, low cognitive load. Humor or easy entertainment. Gets the user in the zone without demanding effort.</td>
+                  </tr>
+                  <tr>
+                    <td><code>good_builder</code></td>
+                    <td>Suitable for mid-session</td>
+                    <td>Focused, deepening, moderate energy. Skill-building, craft, or educational content. The user is warmed up and ready to learn.</td>
+                  </tr>
+                  <tr>
+                    <td><code>good_peak</code></td>
+                    <td>Suitable for energy peak</td>
+                    <td>Intense, motivating, high energy. Workout clips, motivational speeches, hype music. The emotional high point of the session.</td>
+                  </tr>
+                  <tr>
+                    <td><code>good_closer</code></td>
+                    <td>Suitable to end a session</td>
+                    <td>Grounding, satisfying, resolution-oriented. Calm craft videos, ambient music, reflective content. Leaves the user in a good state to disconnect.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="spec-callout mt-3">
+              <p><strong>Multiple flags:</strong> A content item can have multiple session fit flags set to <code>true</code>. A calm craft video might be both a <code>good_builder</code> and a <code>good_closer</code>. The PAE decides which position to use based on the session arc template and user preferences.</p>
+            </div>
+          </div>
+
+          <!-- Guardrails -->
+          <div class="spec-section" id="guardrails">
+            <h2><span class="section-num">5</span> Guardrail Rules</h2>
+            <p>Good Vibes publishes its content filter logic openly. Transparency is credibility. These guardrails define what Good Vibes curates &mdash; the protocol (SEP) itself has no content opinions.</p>
+
+            <div class="spec-callout">
+              <p><strong>Important:</strong> Another provider could implement SEP with completely different guardrails. That's by design. The guardrails are a <em>provider</em> concern, not a <em>protocol</em> concern.</p>
+            </div>
+
+            <h3>Explicit Exclusions</h3>
+            <p>Content matching any of these criteria is tagged <code>guardrail_pass: false</code> and excluded from Good Vibes responses.</p>
+            <ul class="guardrail-list guardrail-list--exclude">
+              <li>Graphic violence or gore</li>
+              <li>Pornography or sexually explicit content</li>
+              <li>Content promoting self-harm or suicide</li>
+              <li>Extreme degradation or humiliation</li>
+              <li>Targeted harassment</li>
+              <li>Recruitment for extremist ideologies</li>
+            </ul>
+
+            <h3 class="mt-4">Soft Filters</h3>
+            <p>These are configurable by the user. Default behaviors are listed below, but users can adjust through their PAE preferences.</p>
+            <ul class="guardrail-list guardrail-list--soft">
+              <li><strong>Inflammatory political content</strong> &mdash; Default: reduced weight, not excluded</li>
+              <li><strong>Profanity-heavy content</strong> &mdash; Default: allowed, user can filter</li>
+              <li><strong>Gambling / crypto promotion</strong> &mdash; Default: reduced weight</li>
+              <li><strong>Sponsored content / native ads</strong> &mdash; Default: allowed, tagged as such</li>
+            </ul>
+
+            <div class="spec-callout mt-3">
+              <p><strong>Storage note:</strong> Items that fail guardrails are tagged as <code>guardrail_pass: false</code> but still stored in the index. Other providers with different guardrails may want them. The guardrail is a filter, not a deletion mechanism.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/good-vibes-logo.svg" alt="" width="24" height="24">
+        Good Vibes &mdash; Personal Algorithm Engine
+      </div>
+      <ul class="footer__links">
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="taxonomy.html">Taxonomy</a></li>
+        <li><a href="whitepaper.html">White Paper</a></li>
+        <li><a href="examples.html">Examples</a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

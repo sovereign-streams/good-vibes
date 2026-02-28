@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Sun rays -->
+  <circle cx="24" cy="20" r="8" fill="#f4845f"/>
+  <g stroke="#f7b267" stroke-width="2.5" stroke-linecap="round">
+    <line x1="24" y1="6" x2="24" y2="9"/>
+    <line x1="32.5" y1="11.5" x2="30.4" y2="13.6"/>
+    <line x1="36" y1="20" x2="33" y2="20"/>
+    <line x1="15.5" y1="11.5" x2="17.6" y2="13.6"/>
+    <line x1="12" y1="20" x2="15" y2="20"/>
+  </g>
+  <!-- Wave -->
+  <path d="M8 32 C12 26, 18 26, 22 30 S32 34, 40 28" stroke="#f4845f" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M8 38 C12 32, 18 32, 22 36 S32 40, 40 34" stroke="#f7b267" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+</svg>

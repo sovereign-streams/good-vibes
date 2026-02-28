@@ -1,0 +1,41 @@
+{
+  "version": "0.1.0",
+  "dimensions": [
+    {
+      "id": "energy_level",
+      "name": "Energy Level",
+      "description": "How much activation and arousal the content produces. Low (0.0) = calm, meditative. High (1.0) = intense, adrenaline-pumping.",
+      "range": { "min": 0.0, "max": 1.0 }
+    },
+    {
+      "id": "cognitive_load",
+      "name": "Cognitive Load",
+      "description": "How much attention and thinking the content requires. Low (0.0) = passive, easy watching. High (1.0) = dense, technical, demanding.",
+      "range": { "min": 0.0, "max": 1.0 }
+    },
+    {
+      "id": "motivation_score",
+      "name": "Motivation Score",
+      "description": "How much the content drives action and ambition. Low (0.0) = neutral. High (1.0) = intensely motivating, call-to-action.",
+      "range": { "min": 0.0, "max": 1.0 }
+    },
+    {
+      "id": "humor_score",
+      "name": "Humor Score",
+      "description": "How funny or entertaining the content is. Low (0.0) = serious, no humor. High (1.0) = comedy-focused, hilarious.",
+      "range": { "min": 0.0, "max": 1.0 }
+    },
+    {
+      "id": "skill_transfer_score",
+      "name": "Skill Transfer Score",
+      "description": "How much practical, actionable knowledge is transferred. Low (0.0) = entertainment only. High (1.0) = tutorial, step-by-step instruction.",
+      "range": { "min": 0.0, "max": 1.0 }
+    },
+    {
+      "id": "production_quality",
+      "name": "Production Quality",
+      "description": "Overall production value including audio, video, and editing quality. Low (0.0) = raw, unedited. High (1.0) = professional studio quality.",
+      "range": { "min": 0.0, "max": 1.0 }
+    }
+  ]
+}

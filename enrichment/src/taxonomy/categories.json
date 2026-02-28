@@ -1,0 +1,77 @@
+{
+  "version": "0.1.0",
+  "categories": [
+    {
+      "id": "fitness",
+      "name": "Fitness",
+      "description": "Exercise, training, body health — workout tutorials, form guides, training programs",
+      "example_queries": ["home workout routine", "strength training for beginners", "HIIT workout", "calisthenics tutorial", "mobility stretching routine"]
+    },
+    {
+      "id": "nutrition",
+      "name": "Nutrition",
+      "description": "Diet, cooking, food science — meal prep, nutrition breakdowns, healthy recipes",
+      "example_queries": ["high protein meal prep", "nutrition for muscle building", "healthy breakfast ideas", "macro counting guide", "budget meal prep"]
+    },
+    {
+      "id": "skill_building",
+      "name": "Skill Building",
+      "description": "Learning new abilities — language learning, coding tutorials, technical skills",
+      "example_queries": ["learn to code for beginners", "woodworking basics", "public speaking tips", "photography tutorial", "guitar lessons beginner"]
+    },
+    {
+      "id": "humor",
+      "name": "Humor",
+      "description": "Comedy, funny fails, light entertainment — comedy sketches, standup clips, fail compilations",
+      "example_queries": ["stand up comedy clips", "funny fails compilation", "comedy sketches", "dad jokes compilation", "improv comedy"]
+    },
+    {
+      "id": "motivation",
+      "name": "Motivation",
+      "description": "Inspirational, discipline, mindset — motivational speeches, success stories, discipline content",
+      "example_queries": ["motivational speech discipline", "morning motivation workout", "success stories entrepreneurs", "david goggins motivation", "never give up motivation"]
+    },
+    {
+      "id": "craft",
+      "name": "Craft",
+      "description": "Making things, woodworking, building — surfboard shaping, shelter building, DIY projects",
+      "example_queries": ["woodworking project beginner", "build a table from scratch", "knife making tutorial", "leather working basics", "surfboard shaping"]
+    },
+    {
+      "id": "stoicism",
+      "name": "Stoicism",
+      "description": "Philosophy, mental frameworks, resilience — Stoic philosophy, mental models, emotional regulation",
+      "example_queries": ["stoic philosophy explained", "marcus aurelius meditations", "stoicism for modern life", "mental toughness philosophy", "how to control emotions stoicism"]
+    },
+    {
+      "id": "fatherhood",
+      "name": "Fatherhood",
+      "description": "Parenting, family, role modeling — dad advice, family activities, parenting strategies",
+      "example_queries": ["new dad advice", "father son activities", "how to be a better dad", "parenting tips for fathers", "dad life vlog"]
+    },
+    {
+      "id": "entrepreneurship",
+      "name": "Entrepreneurship",
+      "description": "Business, hustle, career growth — startup advice, business strategy, side hustles",
+      "example_queries": ["start a business with no money", "side hustle ideas", "entrepreneurship advice", "small business tips", "how to start a startup"]
+    },
+    {
+      "id": "music",
+      "name": "Music",
+      "description": "Music tracks, playlists, performance — pump-up tracks, chill beats, live performances",
+      "example_queries": ["workout music playlist", "chill beats study", "pump up songs gym", "acoustic guitar covers", "live music performance"]
+    },
+    {
+      "id": "nature",
+      "name": "Nature",
+      "description": "Outdoors, exploration, bushcraft — camping, hiking, survival skills, nature documentation",
+      "example_queries": ["bushcraft camping", "hiking adventure vlog", "survival skills wilderness", "nature documentary", "outdoor camping tips"]
+    },
+    {
+      "id": "relaxation",
+      "name": "Relaxation",
+      "description": "Calm content, ASMR, slow crafting — woodworking, pottery, slow cooking, ambient content",
+      "example_queries": ["satisfying woodworking", "pottery making asmr", "slow cooking recipes", "relaxing nature sounds", "calming crafts"]
+    }
+  ]
+}

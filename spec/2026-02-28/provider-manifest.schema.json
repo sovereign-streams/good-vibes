@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://goodvibes.app/schemas/2026-02-28/provider-manifest.schema.json",
+  "title": "SEP Provider Manifest",
+  "description": "A provider's self-declaration document, published at a well-known endpoint. Declares the provider's identity, capabilities, supported exchange models, content types, guardrail policies, and rate limits. Consumers use the manifest to discover and negotiate with providers before initiating content exchanges.",
+  "type": "object",
+  "required": [
+    "sep_version",
+    "provider_id",
+    "provider_name",
+    "endpoint",
+    "supported_models",
+    "supported_content_types",
+    "enrichment_schema_version",
+    "max_payload_size"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "sep_version": {
+      "type": "string",
+      "description": "The version of the Stream Exchange Protocol this manifest conforms to.",
+      "examples": ["0.1.0"]
+    },
+    "provider_id": {
+      "type": "string",
+      "description": "The unique identifier of the stream provider.",
+      "examples": ["good-vibes-main"]
+    },
+    "provider_name": {
+      "type": "string",
+      "description": "The human-readable name of the stream provider.",
+      "examples": ["Good Vibes"]
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the provider's purpose, ethos, and content focus.",
+      "examples": ["Cognitive environment designer for positive content consumption"]
+    },
+    "endpoint": {
+      "type": "string",
+      "format": "uri",
+      "description": "The base URL of the provider's SEP API endpoint.",
+      "examples": ["https://api.goodvibes.app/sep/v1"]
+    },
+    "supported_models": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/exchange_model"
+      },
+      "minItems": 1,
+      "description": "The exchange models this provider supports. At least one model must be declared."
+    },
+    "supported_content_types": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/content_type"
+      },
+      "minItems": 1,
+      "description": "The content types available from this provider."
+    },
+    "guardrails": {
+      "$ref": "#/$defs/guardrails"
+    },
+    "enrichment_schema_version": {
+      "type": "string",
+      "description": "The version of the enrichment schema used by this provider's index. Consumers can use this to determine compatibility.",
+      "examples": ["0.1.0"]
+    },
+    "max_payload_size": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The maximum number of enrichment envelopes the provider will return in a single response."
+    },
+    "rate_limit": {
+      "$ref": "#/$defs/rate_limit"
+    }
+  },
+  "$defs": {
+    "exchange_model": {
+      "type": "string",
+      "enum": ["negotiated", "curated_payload", "full_index_browse"],
+      "description": "An exchange model supported by the provider. 'negotiated': multi-round exchange with state tokens (recommended default). 'curated_payload': provider filters heavily and returns a curated set. 'full_index_browse': consumer queries the full metadata index directly."
+    },
+    "content_type": {
+      "type": "string",
+      "enum": ["video", "podcast", "music", "article"],
+      "description": "A type of content available from this provider."
+    },
+    "guardrails": {
+      "type": "object",
+      "description": "The provider's guardrail policy. Transparent providers publish their curation standards openly so consumers can make informed decisions about which providers to trust.",
+      "additionalProperties": false,
+      "properties": {
+        "published": {
+          "type": "boolean",
+          "description": "Whether the provider's guardrail standards are published and publicly accessible."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL where the provider's guardrail documentation can be found."
+        },
+        "version": {
+          "type": "string",
+          "description": "The version of the guardrail ruleset currently in effect.",
+          "examples": ["0.1.0"]
+        }
+      }
+    },
+    "rate_limit": {
+      "type": "object",
+      "description": "Rate limiting parameters for the provider's API. Consumers should respect these limits to maintain good standing.",
+      "additionalProperties": false,
+      "properties": {
+        "requests_per_minute": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The maximum number of requests a consumer can make per minute."
+        },
+        "daily_cap": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The maximum number of requests a consumer can make per day."
+        }
+      }
+    }
+  }
+}

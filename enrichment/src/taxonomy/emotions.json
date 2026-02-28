@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "emotional_tones": [
+    { "id": "calm", "name": "Calm", "description": "Peaceful, relaxed, soothing — content that reduces tension and promotes tranquility" },
+    { "id": "focused", "name": "Focused", "description": "Concentrated, attentive, engaged — content that demands and rewards sustained attention" },
+    { "id": "energized", "name": "Energized", "description": "Activated, pumped, high-energy — content that raises arousal and drives action" },
+    { "id": "amused", "name": "Amused", "description": "Entertained, light-hearted, laughing — content that produces joy and laughter" },
+    { "id": "inspired", "name": "Inspired", "description": "Motivated, uplifted, aspirational — content that sparks ambition and possibility" },
+    { "id": "reflective", "name": "Reflective", "description": "Thoughtful, contemplative, introspective — content that promotes deeper thinking" }
+  ],
+  "boolean_flags": [
+    { "id": "rage_bait", "name": "Rage Bait", "description": "Content designed to provoke outrage or anger for engagement" },
+    { "id": "humiliation", "name": "Humiliation", "description": "Content that derives entertainment from degrading or embarrassing people" },
+    { "id": "shock_content", "name": "Shock Content", "description": "Content designed to shock or disturb for attention" },
+    { "id": "inflammatory", "name": "Inflammatory", "description": "Content designed to inflame political or social division" },
+    { "id": "sexually_explicit", "name": "Sexually Explicit", "description": "Content containing explicit sexual material" },
+    { "id": "violence", "name": "Violence", "description": "Content containing graphic violence or gore" }
+  ]
+}

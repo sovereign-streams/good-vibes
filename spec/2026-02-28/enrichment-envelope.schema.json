@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://goodvibes.app/schemas/2026-02-28/enrichment-envelope.schema.json",
+  "title": "SEP Enrichment Envelope",
+  "description": "The core schema for the Stream Exchange Protocol (SEP). Every content item in a SEP stream carries an enrichment envelope containing source metadata, semantic enrichment scores, emotional tone analysis, session-fit indicators, and provider attestation. This is the foundational data structure that enables consumer-side algorithmic sovereignty.",
+  "type": "object",
+  "required": ["sep_version", "item_id", "source", "meta", "enrichment", "provider"],
+  "additionalProperties": false,
+  "properties": {
+    "sep_version": {
+      "type": "string",
+      "description": "The version of the Stream Exchange Protocol this envelope conforms to.",
+      "examples": ["0.1.0"]
+    },
+    "item_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "A globally unique identifier for this content item within the SEP ecosystem."
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "meta": {
+      "$ref": "#/$defs/meta"
+    },
+    "enrichment": {
+      "$ref": "#/$defs/enrichment"
+    },
+    "provider": {
+      "$ref": "#/$defs/provider"
+    }
+  },
+  "$defs": {
+    "content_type": {
+      "type": "string",
+      "enum": ["video", "podcast", "music", "article"],
+      "description": "The type of content this item represents."
+    },
+    "emotional_tone_value": {
+      "type": "string",
+      "enum": ["calm", "focused", "energized", "amused", "inspired", "reflective"],
+      "description": "A classification of emotional tone detected in the content."
+    },
+    "unit_interval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "A normalized score between 0 and 1 inclusive."
+    },
+    "category": {
+      "type": "object",
+      "description": "A semantic category assigned to the content with a confidence score indicating the strength of the classification.",
+      "required": ["id", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The category identifier from the enrichment taxonomy (e.g., 'fitness', 'humor', 'craft', 'skill_building')."
+        },
+        "confidence": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "Confidence that this category applies to the content."
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "description": "Origin information for the content item. Points back to the original platform and resource. SEP is meta-first: it references content rather than hosting it.",
+      "required": ["platform", "origin_url", "origin_id", "content_type", "duration_seconds"],
+      "additionalProperties": false,
+      "properties": {
+        "platform": {
+          "type": "string",
+          "description": "The platform where the content originates (e.g., 'youtube', 'spotify', 'substack', 'rss').",
+          "examples": ["youtube", "spotify", "substack"]
+        },
+        "origin_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The canonical URL of the content on its origin platform."
+        },
+        "origin_id": {
+          "type": "string",
+          "description": "The platform-specific unique identifier for the content (e.g., a YouTube video ID).",
+          "examples": ["dQw4w9WgXcQ"]
+        },
+        "content_type": {
+          "$ref": "#/$defs/content_type"
+        },
+        "duration_seconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The duration of the content in seconds. Use 0 for content without a fixed duration (e.g., articles)."
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Human-readable metadata about the content item, sourced from the origin platform and normalized for SEP consumption.",
+      "required": ["title", "creator", "published", "original_tags", "language", "thumbnail_url"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the content item as published on the origin platform."
+        },
+        "creator": {
+          "type": "string",
+          "description": "The name of the content creator or channel."
+        },
+        "published": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The publication timestamp of the content on its origin platform, in ISO 8601 format."
+        },
+        "original_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags or keywords from the origin platform, preserved as-is for provenance."
+        },
+        "language": {
+          "type": "string",
+          "description": "The primary language of the content as a BCP 47 language tag.",
+          "examples": ["en", "es", "fr", "de"]
+        },
+        "thumbnail_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the content thumbnail image on the origin platform."
+        }
+      }
+    },
+    "emotional_tone": {
+      "type": "object",
+      "description": "Emotional tone analysis of the content. Includes a primary and optional secondary tone classification, plus boolean flags for content that may be harmful or manipulative.",
+      "required": ["primary", "secondary", "rage_bait", "humiliation", "shock_content", "inflammatory", "sexually_explicit", "violence"],
+      "additionalProperties": false,
+      "properties": {
+        "primary": {
+          "$ref": "#/$defs/emotional_tone_value",
+          "description": "The dominant emotional tone of the content."
+        },
+        "secondary": {
+          "oneOf": [
+            { "$ref": "#/$defs/emotional_tone_value" },
+            { "type": "null" }
+          ],
+          "description": "A secondary emotional tone, if present. Null if the content has a single dominant tone."
+        },
+        "rage_bait": {
+          "type": "boolean",
+          "description": "Whether the content is designed to provoke anger for engagement."
+        },
+        "humiliation": {
+          "type": "boolean",
+          "description": "Whether the content derives entertainment value from humiliating individuals."
+        },
+        "shock_content": {
+          "type": "boolean",
+          "description": "Whether the content relies on shock value to drive engagement."
+        },
+        "inflammatory": {
+          "type": "boolean",
+          "description": "Whether the content is designed to inflame divisions or provoke heated reactions."
+        },
+        "sexually_explicit": {
+          "type": "boolean",
+          "description": "Whether the content contains sexually explicit material."
+        },
+        "violence": {
+          "type": "boolean",
+          "description": "Whether the content contains graphic violence or glorifies violent behavior."
+        }
+      }
+    },
+    "session_fit": {
+      "type": "object",
+      "description": "Indicates where this content item fits within a composed session arc. Session arcs give structure to content consumption — opening with lighter content, building through skill and focus, peaking with intensity, and closing with calm.",
+      "required": ["good_opener", "good_builder", "good_peak", "good_closer"],
+      "additionalProperties": false,
+      "properties": {
+        "good_opener": {
+          "type": "boolean",
+          "description": "Whether this item works well at the start of a session (e.g., light humor, warm-up energy)."
+        },
+        "good_builder": {
+          "type": "boolean",
+          "description": "Whether this item works well in the middle of a session (e.g., skill-building, focused learning)."
+        },
+        "good_peak": {
+          "type": "boolean",
+          "description": "Whether this item works well as a session peak (e.g., high motivation, intensity spike)."
+        },
+        "good_closer": {
+          "type": "boolean",
+          "description": "Whether this item works well to close a session (e.g., calm craft, reflective content, pump-up music)."
+        }
+      }
+    },
+    "enrichment": {
+      "type": "object",
+      "description": "The semantic enrichment layer produced by the LLM-powered enrichment pipeline. Contains all machine-generated scores, classifications, and session-fit indicators that enable consumer-side algorithmic sovereignty.",
+      "required": [
+        "schema_version",
+        "enriched_at",
+        "categories",
+        "emotional_tone",
+        "energy_level",
+        "cognitive_load",
+        "motivation_score",
+        "humor_score",
+        "skill_transfer_score",
+        "production_quality",
+        "session_fit"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "description": "The version of the enrichment schema used to produce these scores. Enrichment schemas are versioned independently from the SEP protocol version.",
+          "examples": ["0.1.0"]
+        },
+        "enriched_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the enrichment was performed, in ISO 8601 format."
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/category"
+          },
+          "description": "Semantic categories assigned to this content, ordered by confidence descending."
+        },
+        "emotional_tone": {
+          "$ref": "#/$defs/emotional_tone"
+        },
+        "energy_level": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "The overall energy level of the content, from 0 (very calm, meditative) to 1 (very high energy, intense)."
+        },
+        "cognitive_load": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "The cognitive effort required to consume this content, from 0 (passive, easy) to 1 (dense, demanding)."
+        },
+        "motivation_score": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "How motivating or action-inspiring the content is, from 0 (neutral) to 1 (highly motivating)."
+        },
+        "humor_score": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "The humor content level, from 0 (no humor) to 1 (primarily comedic)."
+        },
+        "skill_transfer_score": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "How much actionable skill or knowledge the content transfers, from 0 (pure entertainment) to 1 (highly instructional)."
+        },
+        "production_quality": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "Assessment of the production quality (audio, video, editing, presentation), from 0 (low quality) to 1 (professional production)."
+        },
+        "session_fit": {
+          "$ref": "#/$defs/session_fit"
+        }
+      }
+    },
+    "provider": {
+      "type": "object",
+      "description": "Attestation from the stream provider that served this enrichment envelope. Includes the provider identity and whether the content passed the provider's guardrail checks.",
+      "required": ["id", "guardrail_pass", "guardrail_version"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the stream provider that produced this envelope.",
+          "examples": ["good-vibes-main"]
+        },
+        "guardrail_pass": {
+          "type": "boolean",
+          "description": "Whether this content item passed the provider's guardrail checks. A value of false indicates the item was flagged but included for transparency."
+        },
+        "guardrail_version": {
+          "type": "string",
+          "description": "The version of the guardrail ruleset applied during evaluation.",
+          "examples": ["0.1.0"]
+        }
+      }
+    }
+  }
+}

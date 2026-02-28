@@ -1,0 +1,87 @@
+[
+  {
+    "videoId": "abc123def456",
+    "title": "10-Minute Morning Workout — No Equipment",
+    "description": "Start your day right with this quick 10-minute full body workout. No equipment needed. Perfect for beginners and advanced athletes alike. Follow along and get after it!",
+    "channelTitle": "FitLife Daily",
+    "publishedAt": "2026-01-15T08:00:00Z",
+    "thumbnails": {
+      "default": { "url": "https://i.ytimg.com/vi/abc123def456/default.jpg" },
+      "high": { "url": "https://i.ytimg.com/vi/abc123def456/hqdefault.jpg" }
+    },
+    "tags": ["workout", "morning routine", "fitness", "no equipment", "full body"],
+    "duration": "PT10M23S",
+    "duration_seconds": 623,
+    "viewCount": 245000,
+    "likeCount": 12000,
+    "categoryId": "22"
+  },
+  {
+    "videoId": "xyz789ghi012",
+    "title": "Marcus Aurelius — The Stoic Emperor's Daily Practice",
+    "description": "Explore the daily stoic practices of Marcus Aurelius and how they apply to modern life. This video breaks down key passages from Meditations and shows how ancient wisdom can transform your mindset.",
+    "channelTitle": "Philosophy Hub",
+    "publishedAt": "2026-02-01T12:00:00Z",
+    "thumbnails": {
+      "default": { "url": "https://i.ytimg.com/vi/xyz789ghi012/default.jpg" },
+      "high": { "url": "https://i.ytimg.com/vi/xyz789ghi012/hqdefault.jpg" }
+    },
+    "tags": ["stoicism", "marcus aurelius", "philosophy", "meditations", "mindset"],
+    "duration": "PT14M52S",
+    "duration_seconds": 892,
+    "viewCount": 180000,
+    "likeCount": 9500,
+    "categoryId": "27"
+  },
+  {
+    "videoId": "jkl345mno678",
+    "title": "Best Stand-Up Comedy Clips 2026 — Try Not to Laugh",
+    "description": "The funniest stand-up comedy clips of 2026. Clean humor, clever observations, and non-stop laughs. Perfect for a quick mood boost.",
+    "channelTitle": "Comedy Central Clips",
+    "publishedAt": "2026-02-10T16:00:00Z",
+    "thumbnails": {
+      "default": { "url": "https://i.ytimg.com/vi/jkl345mno678/default.jpg" },
+      "high": { "url": "https://i.ytimg.com/vi/jkl345mno678/hqdefault.jpg" }
+    },
+    "tags": ["comedy", "stand up", "funny", "try not to laugh", "best of 2026"],
+    "duration": "PT8M15S",
+    "duration_seconds": 495,
+    "viewCount": 520000,
+    "likeCount": 28000,
+    "categoryId": "23"
+  },
+  {
+    "videoId": "pqr901stu234",
+    "title": "Build a Cutting Board from Scrap Wood — Beginner Woodworking",
+    "description": "Learn to build a beautiful end-grain cutting board using scrap wood. Step-by-step woodworking tutorial perfect for beginners. Relaxing workshop vibes.",
+    "channelTitle": "Shaping Bay",
+    "publishedAt": "2026-01-20T14:00:00Z",
+    "thumbnails": {
+      "default": { "url": "https://i.ytimg.com/vi/pqr901stu234/default.jpg" },
+      "high": { "url": "https://i.ytimg.com/vi/pqr901stu234/hqdefault.jpg" }
+    },
+    "tags": ["woodworking", "cutting board", "beginner", "diy", "craft"],
+    "duration": "PT18M42S",
+    "duration_seconds": 1122,
+    "viewCount": 95000,
+    "likeCount": 6200,
+    "categoryId": "26"
+  },
+  {
+    "videoId": "vwx567yza890",
+    "title": "GRAPHIC WARNING: Street Fight Compilation — Brutal KOs",
+    "description": "The most brutal street fight knockouts caught on camera. Extreme violence warning.",
+    "channelTitle": "Fight Compilation",
+    "publishedAt": "2026-02-20T20:00:00Z",
+    "thumbnails": {
+      "default": { "url": "https://i.ytimg.com/vi/vwx567yza890/default.jpg" },
+      "high": { "url": "https://i.ytimg.com/vi/vwx567yza890/hqdefault.jpg" }
+    },
+    "tags": ["street fights", "knockout", "brutal", "violence", "compilation"],
+    "duration": "PT12M05S",
+    "duration_seconds": 725,
+    "viewCount": 1200000,
+    "likeCount": 15000,
+    "categoryId": "17"
+  }
+]

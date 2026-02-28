@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "categories": [
+    { "id": "fitness", "confidence": 0.95 },
+    { "id": "motivation", "confidence": 0.60 }
+  ],
+  "emotional_tone": {
+    "primary": "energized",
+    "secondary": "inspired",
+    "rage_bait": false,
+    "humiliation": false,
+    "shock_content": false,
+    "inflammatory": false,
+    "sexually_explicit": false,
+    "violence": false
+  },
+  "energy_level": 0.75,
+  "cognitive_load": 0.25,
+  "motivation_score": 0.70,
+  "humor_score": 0.05,
+  "skill_transfer_score": 0.65,
+  "production_quality": 0.70,
+  "session_fit": {
+    "good_opener": true,
+    "good_builder": true,
+    "good_peak": false,
+    "good_closer": false
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://goodvibes.app/schemas/2026-02-28/telemetry.schema.json",
+  "title": "SEP Telemetry",
+  "description": "Optional, opt-in engagement telemetry that a consumer can share with a provider after a session. Telemetry creates a value exchange: the provider receives signal quality data to improve future recommendations, and the consumer receives better-tailored payloads. Telemetry is never required and the consumer always controls what is shared.",
+  "type": "object",
+  "required": ["sep_version", "telemetry"],
+  "additionalProperties": false,
+  "properties": {
+    "sep_version": {
+      "type": "string",
+      "description": "The version of the Stream Exchange Protocol this telemetry payload conforms to.",
+      "examples": ["0.1.0"]
+    },
+    "telemetry": {
+      "$ref": "#/$defs/telemetry"
+    }
+  },
+  "$defs": {
+    "unit_interval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "A normalized score between 0 and 1 inclusive."
+    },
+    "telemetry_item": {
+      "type": "object",
+      "description": "Engagement data for a single content item within the session. Captures viewing behavior signals that help the provider understand content quality and relevance.",
+      "required": ["item_id", "viewed"],
+      "additionalProperties": false,
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The SEP item_id of the content item this telemetry refers to."
+        },
+        "viewed": {
+          "type": "boolean",
+          "description": "Whether the consumer viewed (started playback of) this item."
+        },
+        "view_duration_seconds": {
+          "type": "number",
+          "minimum": 0,
+          "description": "How many seconds of the content the consumer watched."
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "Whether the consumer watched or consumed the item to completion."
+        },
+        "liked": {
+          "type": "boolean",
+          "description": "Whether the consumer explicitly liked or favorited the item."
+        },
+        "skipped_at_seconds": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The timestamp in seconds at which the consumer skipped to the next item. Only present if the item was skipped."
+        },
+        "rewatched": {
+          "type": "boolean",
+          "description": "Whether the consumer replayed or re-consumed the item during the session."
+        },
+        "paused": {
+          "type": "boolean",
+          "description": "Whether the consumer paused during playback."
+        },
+        "paused_at_seconds": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The timestamp in seconds at which the consumer first paused. Only meaningful if paused is true."
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "description": "The telemetry payload containing session-level and item-level engagement data.",
+      "required": ["session_id", "items", "session_completed", "session_satisfaction"],
+      "additionalProperties": false,
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "A unique identifier for the session this telemetry covers."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/telemetry_item"
+          },
+          "description": "Per-item engagement data for each content item the consumer interacted with during the session."
+        },
+        "session_completed": {
+          "type": "boolean",
+          "description": "Whether the consumer completed the full session arc or exited early."
+        },
+        "session_satisfaction": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "The consumer's self-reported satisfaction with the session, from 0 (poor) to 1 (excellent). May be inferred from behavior rather than explicitly asked."
+        }
+      }
+    }
+  }
+}
