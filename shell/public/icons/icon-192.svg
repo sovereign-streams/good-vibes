@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <rect width="192" height="192" rx="40" fill="#FFF8F0"/>
+  <!-- Sunrise arc -->
+  <path d="M24 130 Q96 70 168 130" fill="none" stroke="#FF6B35" stroke-width="8" stroke-linecap="round"/>
+  <!-- Sun body (half) -->
+  <circle cx="96" cy="130" r="28" fill="#F7C948" opacity="0.3"/>
+  <!-- Sun rays -->
+  <line x1="96" y1="100" x2="96" y2="60" stroke="#F7C948" stroke-width="6" stroke-linecap="round"/>
+  <line x1="96" y1="100" x2="66" y2="72" stroke="#F7C948" stroke-width="5" stroke-linecap="round"/>
+  <line x1="96" y1="100" x2="126" y2="72" stroke="#F7C948" stroke-width="5" stroke-linecap="round"/>
+  <line x1="96" y1="105" x2="48" y2="88" stroke="#F7C948" stroke-width="4" stroke-linecap="round"/>
+  <line x1="96" y1="105" x2="144" y2="88" stroke="#F7C948" stroke-width="4" stroke-linecap="round"/>
+  <!-- Wave -->
+  <path d="M30 152 Q63 140 96 152 Q129 164 162 152" fill="none" stroke="#E8505B" stroke-width="6" stroke-linecap="round"/>
+</svg>
