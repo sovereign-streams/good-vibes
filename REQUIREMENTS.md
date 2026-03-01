@@ -12,7 +12,7 @@
 
 1. [Executive Summary](#1-executive-summary)
 2. [Problem Statement](#2-problem-statement)
-3. [Vision: Internet 4.0](#3-vision-internet-40)
+3. [Vision: Web 4.0](#3-vision-internet-40)
 4. [Core Concepts](#4-core-concepts)
 5. [Protocol Design: Stream Exchange Protocol (SEP)](#5-protocol-design-sep)
 6. [Architecture](#6-architecture)
@@ -106,7 +106,7 @@ The architecture serves anyone. The first product serves men who want to take th
 
 ---
 
-## 3. Vision: Internet 4.0
+## 3. Vision: Web 4.0
 
 ### The Evolution of the Web
 
@@ -119,12 +119,12 @@ User-generated content. Algorithmic feeds. Platforms own your audience, your dat
 **Internet 3.0 — Decentralized Infrastructure (2015–present)**
 Blockchain. Wallet-based identity. Tokenized assets. Decentralized the ledger but not the experience — users still live on centralized interfaces (OpenSea, MetaMask, Coinbase).
 
-**Internet 4.0 — Seamless Sovereignty (emerging)**
+**Web 4.0 — Seamless Sovereignty (emerging)**
 Protocol-mediated streams between sovereign consumers and sovereign providers, coordinated by intelligent agents. Users own the interface layer itself.
 
-### Internet 4.0 Defined
+### Web 4.0 Defined
 
-Internet 4.0 is not about decentralizing hardware or data storage. It is about **decentralizing influence** — giving individuals control over the algorithms that shape their cognitive environment.
+Web 4.0 is not about decentralizing hardware or data storage. It is about **decentralizing influence** — giving individuals control over the algorithms that shape their cognitive environment.
 
 Key principles:
 
@@ -1215,7 +1215,7 @@ Items explicitly deferred beyond Phase 4:
 - [ ] Social features (share sessions, share profiles)
 - [ ] Creator tools (self-tag content for SEP compatibility)
 - [ ] Enterprise version (workplace content curation)
-- [ ] Internet 4.0 white paper / manifesto
+- [ ] Web 4.0 white paper / manifesto
 - [ ] Integration with AIP (agent discovers Good Vibes via AIP protocol)
 - [ ] Multi-language taxonomy and content support
 - [ ] Music-specific enrichment (BPM, mood, genre for session soundtracks)

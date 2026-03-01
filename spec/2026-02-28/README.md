@@ -1,3 +1,7 @@
+> **Canonical source:** These schemas are maintained in
+> [sovereign-streams/web4](https://github.com/sovereign-streams/web4/tree/main/spec).
+> This copy is kept for local development convenience.
+
 # Stream Exchange Protocol (SEP) — Specification v0.1.0
 
 **Snapshot Date:** 2026-02-28
