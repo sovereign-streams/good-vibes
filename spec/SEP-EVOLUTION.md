@@ -700,6 +700,116 @@ This is sustainable. The mission is not "make Paul rich." The mission is "pay th
 
 ---
 
+## 11. Syndication & Commerce Models
+
+### The Two Syndication Directions
+
+SEP supports two fundamentally different content distribution strategies. Both use the same protocol primitives. The difference is who initiates.
+
+**Forward Syndication (Push Marketing)**
+A producer finds consumers and publishes enrichment metadata directly to providers or Nostr relays. The producer's agent handles distribution — pushing content to YouTube, TikTok, Instagram, AND Web 4.0 providers simultaneously. The consumer streams media on demand from origin sources. This is the steady-state model once the ecosystem has critical mass.
+
+**Reverse Syndication (Pull Marketing)**
+A middle-man entity (itself both a producer and consumer, like Good Vibes) discovers quality content in the wild, enriches its metadata via the LLM pipeline, and serves it through its own provider endpoint. The content is never hosted — it's meta-first, pointing back to origin URLs. This is the aggressive growth strategy for launch.
+
+```
+Discover quality creators (low copyright risk, high potential, overlooked)
+    → Index metadata via YouTube API / public feeds
+    → Enrich with LLM pipeline (categories, tone, energy, session fit)
+    → Serve enriched metadata through Good Vibes provider
+    → Consumers engage → revenue flows to general pool
+    → Contact creator: "Sign up to claim your share"
+    → Creator joins syndication service → direct P2P from then on
+```
+
+### The Three Commerce Models
+
+All three models work within SEP. The protocol doesn't dictate commerce — it enables it. The provider's governance protocol declares which models it supports.
+
+**Model A: Direct Pay**
+
+Consumer pays directly for content or products discovered through the algorithm:
+
+*Tip/Support:* Consumer sends value directly to the creator. Payment flows through x402, Lightning Zaps, or Stripe. The provider facilitates the connection but doesn't take a cut (or takes a minimal processing fee). Products: Stanzas (books), Itzda (music), Good Vibes (creator tips), Open Shelf (marketplace).
+
+*Product Purchase:* Consumer discovers a product through organically surfaced content at a transparent price. Consumer pays into escrow (1-3 day fulfillment window) OR registers interest and waits for producer fulfillment.
+
+Add to the Telemetry schema:
+```json
+{
+  "commerce_event": {
+    "type": "direct_purchase",
+    "item_id": "...",
+    "amount": 29.99,
+    "currency": "USD",
+    "settlement": "escrow",
+    "escrow_window_hours": 72,
+    "producer_id": "...",
+    "status": "pending_fulfillment"
+  }
+}
+```
+
+**Model B: Indirect Pay (Native Partnership)**
+
+An influencer/creator naturally features a product in their content. In Web 4.0, this is a transparent partnership facilitated by agents, not a platform-brokered ad deal.
+
+```
+Creator content naturally links to a product
+    → Enrichment pipeline tags the product reference
+    → Consumer's algorithm surfaces the content organically
+    → Consumer clicks through → purchase tracked
+    → Revenue splits: creator + partner + provider margin
+```
+
+This is NOT traditional advertising because the consumer's algorithm decided to surface it, the partnership metadata is transparently tagged, and the consumer can set "no partnership content" in their PAE.
+
+**Model C: Affiliate**
+
+Good Vibes supports external affiliate programs as a pragmatic bridge to established commerce. The provider enriches content and links through to affiliate partners (YOMO, Amazon Associates, etc.).
+
+```json
+{
+  "commerce": {
+    "model": "affiliate",
+    "affiliate_program": "yomo_v2",
+    "affiliate_link": "https://yomo.app/p/...",
+    "commission_rate": 0.08,
+    "disclosure": "Affiliate link — provider earns commission on purchases"
+  }
+}
+```
+
+### The Escrow Pattern
+
+All commerce models share a common escrow pattern:
+
+```
+Consumer signals purchase intent
+    → Funds held in escrow (MoR — Stripe or equivalent)
+    → Fulfillment window: 1-3 days (configurable)
+    → Producer fulfills → funds released
+    → Producer fails → funds returned to consumer
+```
+
+### Reverse Syndication: The Recruitment Escrow
+
+The aggressive growth variant uses revenue as a recruitment tool:
+
+1. Good Vibes indexes and enriches a creator's content (meta-first, never hosted)
+2. Consumers engage with the enriched content
+3. Revenue accumulates in a general pool
+4. Good Vibes contacts the creator:
+   - "Consumers loved your content. We generated $X in engagement revenue."
+   - "Sign up for our syndication service + record a short promo for Good Vibes"
+   - "We pay you a signing bonus of $X from our revenue pool"
+5. Creator declines → revenue stays in pool, any direct consumer payments refunded
+6. Creator accepts → direct P2P relationship going forward
+
+Ethical framework: meta-first indexing means we reference, never host. The creator's content plays from its origin source. We add enrichment and curation value. If they don't want to participate, nothing was taken — their reputation is intact, their content is where it always was.
+
+---
+
 ## Appendix A: Good Vibes API Key Spec (Draft)
 
 ```
